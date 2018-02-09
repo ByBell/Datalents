@@ -1,21 +1,23 @@
 security:
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders:
+        App\Entity\User: bcrypt
     providers:
-        in_memory: { memory: ~ }
+        database_users:
+            entity: { class: App:User, property: email }
     firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
         main:
             anonymous: ~
-
-            # activate different ways to authenticate
-
-            # http_basic: ~
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: ~
-            # https://symfony.com/doc/current/security/form_login_setup.html
+            guard:
+                authenticators:
+                    - app.form_login_authenticator
+            logout:
+                path: /logout
+                target: /
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
