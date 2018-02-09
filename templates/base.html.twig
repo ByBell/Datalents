@@ -3,11 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Datalents - Les talents que vous cherchez !{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        {% endblock %}
     </head>
     <body>
-        <h1>Test
-        </h1>
+
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

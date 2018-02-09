@@ -31,8 +31,10 @@ class AuthController extends Controller
      */
     public function loginCheckAction()
     {
-
+        return $this->redirectToRoute('home.html.twig');
     }
+
+
 
     /**
      * @Route("/logout", name="logout")
