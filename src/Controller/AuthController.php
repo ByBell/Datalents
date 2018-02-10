@@ -60,7 +60,7 @@ class AuthController extends Controller
             $user->setPassword($password);
 
             // Set their role
-            $user->setRole('ROLE_USER');
+            //$user->setRole('ROLE_USER');
 
             // Save
             $em = $this->getDoctrine()->getManager();
