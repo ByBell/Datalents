@@ -8,8 +8,7 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use App\Form\UserType;
+use App\Form\EditUserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,13 +28,39 @@ class MyHomeController extends Controller
 
 
         return $this->render('myhome/home.html.twig', ['email' => $id]);
-
     }
 
     /**
      * @Route("/home/profile", name="profile")
      */
-    public function myprofile(){
+    public function profileAction(){
         return $this->render('myhome/profile.html.twig');
+    }
+
+    /**
+     * @Route("/home/account", name="account")
+     */
+    public function accountAction(Request $request, UserInterface $user){
+        $form = $this->createForm(EditUserType::class, $user, [
+            'method' => 'PATCH'
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Encode the new users password if changed
+            if(null !== $password = $user->getPlainPassword()){
+                $encoder = $this->get('security.password_encoder');
+                $password = $encoder->encodePassword($user, $password);
+                $user->setPassword($password);
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('myhome/account.html.twig', ['form' => $form->createView()]);
     }
 }
