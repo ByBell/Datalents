@@ -58,11 +58,10 @@ class FormLoginAuthenticator extends AbstractFormLoginAuthenticator
         throw new BadCredentialsException();
     }
 
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
+    public function onAuthenticationSuccess( Request $request, TokenInterface $token, $providerKey)
     {
 
-        $url = $this->router->generate('home');
-
+        $url = $this->router->generate('verified');
 
         return new RedirectResponse($url);
     }

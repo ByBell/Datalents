@@ -35,9 +35,51 @@ class User implements UserInterface
     protected $role;
 
     /**
+     * @ORM\Column(type="string", length=50)
+     */
+    protected $hash;
+
+    /**
      * @Assert\Length(max=4096)
      */
     protected $plainPassword;
+
+    /**
+     * @return mixed
+     */
+    public function getHash()
+    {
+        return $this->hash;
+    }
+
+    /**
+     * @param mixed $hash
+     */
+    public function setHash($hash)
+    {
+        $this->hash = $hash;
+    }
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $isVerified;
+
+    /**
+     * @return mixed
+     */
+    public function getisVerified()
+    {
+        return $this->isVerified;
+    }
+
+    /**
+     * @param mixed $isVerified
+     */
+    public function setIsVerified($isVerified)
+    {
+        $this->isVerified = $isVerified;
+    }
 
     /**
      * @ORM\Column(type="string", length=64)
