@@ -18,12 +18,24 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class MyHomeController extends Controller
 {
     /**
+     *
      * @Route("/home", name="home")
      */
     public function homeAction(UserInterface $user)
     {
         $id = $user ->getUsername();
+        $em = $this->getDoctrine()->getManager();
+       //Ici je vais chercher ma base de donnée UsersProfil avec l'email comme id.
 
-        return $this->render('myhome/home.html.twig',['email'=>$id]);
+
+        return $this->render('myhome/home.html.twig', ['email' => $id]);
+
+    }
+
+    /**
+     * @Route("/home/profile", name="profile")
+     */
+    public function myprofile(){
+        return $this->render('myhome/profile.html.twig');
     }
 }
