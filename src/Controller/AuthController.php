@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Form\forgetType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,6 +28,58 @@ class AuthController extends Controller
             )
         );
     }
+
+    /**
+     * @Route("/login/forget", name="forget-password")
+     */
+    public function forgetAction(Request $request,\Swift_Mailer $mailer){
+
+        $user = new User;
+        $form = $this->createForm(forgetType::class,$user);
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted()) {
+            // Encode the new users password if changed
+            if ($form->isValid()!=true) {
+
+
+                $email = $user->getEmail();
+                $em = $this->getDoctrine()->getManager();
+
+                $user = $em->getRepository("App:User")->findByEmail($email);
+                $hash = rand(10000000, 99999999);
+                $encoder = $this->get('security.password_encoder');
+                $password = $encoder->encodePassword($user[0], $hash);
+                $user[0]->setPassword($password);
+                $em->persist($user[0]);
+                $em->flush();
+                $message = (new \Swift_Message('Hello Email'))
+                    ->setFrom('datalents.contact@gmail.com')
+                    ->setTo($email)
+                    ->setBody(
+                        $this->renderView(
+                        // templates/emails/registration.html.twig
+                            'emails/forget.html.twig',
+                            ['hash' => $hash,
+                                'email' => $email,]
+                        ),
+                        'text/html'
+                    );
+
+
+                $mailer->send($message);
+                return $this->render('emails/emailfoget.html.twig', ['email' => $email]);
+
+            } else{
+                return new Response ("email n'existe pas");
+            }
+        }
+
+        return $this->render('auth/forget.html.twig', ['form' => $form->createView()]);
+    }
+
+
 
     /**
      *
@@ -58,20 +111,20 @@ class AuthController extends Controller
 
 
     /**
-     * @Route("/mail/{id}/{hash}", name="confirmMail")
+     * @Route("/mail/{hash}/{email}", name="confirmMail")
      */
-    public function confirmmailAction($id,$hash, \Swift_Mailer $mailer)
+    public function confirmmailAction($hash,$email, \Swift_Mailer $mailer)
     {
 
 
         $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository("App:User")->find($id);
-        $test = $user->getHash();
+        $user = $em->getRepository("App:User")->findByEmail($email);
+        $test = $user[0]->getHash();
 
         if ($test == $hash)
         {
-            $user->setIsVerified(true);
-            $em->persist($user);
+            $user[0]->setIsVerified(true);
+            $em->persist($user[0]);
             $em->flush();
 
             return $this->redirectToRoute('login');
@@ -95,7 +148,7 @@ class AuthController extends Controller
             return $this->redirectToRoute('home');
         }
         else{
-            return $this->redirectToRoute('login');
+            return new Response ("email non vérifier, vérifier votre boite mail");
         }
     }
 
@@ -106,6 +159,7 @@ class AuthController extends Controller
      */
     public function loginCheckAction()
     {
+
     }
 
 
