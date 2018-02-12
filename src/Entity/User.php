@@ -30,6 +30,11 @@ class User implements UserInterface
     protected $name;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    protected $nom;
+
+    /**
      * @ORM\Column(type="string", length=50)
      */
     protected $role;
@@ -38,6 +43,22 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=50)
      */
     protected $hash;
+
+    /**
+     * @return mixed
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * @param mixed $nom
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    }
 
     /**
      * @Assert\Length(max=4096)
