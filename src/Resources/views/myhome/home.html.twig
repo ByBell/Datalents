@@ -4,8 +4,20 @@
     <div class="container">
        <h1>Bienvenue dans mon espace</h1>
         <p>{{ email }}</p>
-        <a class="btn btn-primary" href="{{ path('logout') }}"> Déconnexion</a>
+        <a class="btn btn-danger" href="{{ path('logout') }}"> Déconnexion</a>
         <a class="btn btn-danger"href="{{ path('profile') }}">Mon profile</a>
         <a class="btn btn-danger"href="{{ path('account') }}">Mon compte</a>
+
+        <hr>
+        <a href="btn btn-primary"></a>
+        <div class="animation">
+                <a class="btn btn-primary bouton-animation" href="{{ path('homepage') }}"> + </a>
+            <div class="option-animation">
+                <a class="btn btn-primary bouton animation1" href="{{ path('homepage') }}">1</a>
+                <a class="btn btn-primary bouton animation2" href="{{ path('homepage') }}">2</a>
+                <a class="btn btn-primary bouton animation3" href="{{ path('homepage') }}">3</a>
+                <a class="btn btn-primary bouton animation4" href="{{ path('homepage') }}">4</a>
+            </div>
+        </div>
     </div>
 {% endblock %}

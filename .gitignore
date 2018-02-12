@@ -6,7 +6,7 @@
 !var/cache/.gitkeep
 !var/logs/.gitkeep
 !var/sessions/.gitkeep
-
+.DS_Store
 # Managed by Composer
 /vendor
 /bin/*

@@ -8,7 +8,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity
- * @UniqueEntity(fields="email", message="This email address is already in use")
+ * @UniqueEntity(fields="email", message="L'adresse email éxiste déjà.")
  */
 class User implements UserInterface
 {
@@ -30,6 +30,11 @@ class User implements UserInterface
     protected $name;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    protected $nom;
+
+    /**
      * @ORM\Column(type="string", length=50)
      */
     protected $role;
@@ -38,6 +43,22 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=64, nullable=true)
      */
     protected $emailToken;
+
+    /**
+     * @return mixed
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * @param mixed $nom
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    }
 
     /**
      * @Assert\Length(max=4096)
