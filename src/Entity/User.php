@@ -8,7 +8,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity
- * @UniqueEntity(fields="email", message="This email address is already in use")
+ * @UniqueEntity(fields="email", message="L'adresse email éxiste déjà.")
  */
 class User implements UserInterface
 {

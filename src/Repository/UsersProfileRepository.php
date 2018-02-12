@@ -2,11 +2,11 @@
 
 namespace App\Repository;
 
-use App\Entity\UsersProfil;
+use App\Entity\UsersProfile;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-class UsersProfilRepository extends ServiceEntityRepository
+class UsersProfileRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
