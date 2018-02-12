@@ -35,9 +35,9 @@ class User implements UserInterface
     protected $role;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=64, nullable=true)
      */
-    protected $hash;
+    protected $emailToken;
 
     /**
      * @Assert\Length(max=4096)
@@ -45,30 +45,141 @@ class User implements UserInterface
     protected $plainPassword;
 
     /**
-     * @return mixed
+     * @ORM\Column(type="string", length=64)
      */
-    public function getHash()
-    {
-        return $this->hash;
-    }
-
-    /**
-     * @param mixed $hash
-     */
-    public function setHash($hash)
-    {
-        $this->hash = $hash;
-    }
+    protected $password;
 
     /**
      * @ORM\Column(type="boolean")
      */
     protected $isVerified;
 
+
+
     /**
      * @return mixed
      */
-    public function getisVerified()
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoles()
+    {
+        return [$this->getRole()];
+    }
+
+    /**
+     * @param null $role
+     */
+    public function setRole($role = null)
+    {
+        $this->role = $role;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmailToken()
+    {
+        return $this->emailToken;
+    }
+
+    /**
+     * @param mixed $emailToken
+     */
+    public function setEmailToken($emailToken)
+    {
+        $this->emailToken = $emailToken;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param $plainPassword
+     */
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsVerified()
     {
         return $this->isVerified;
     }
@@ -81,79 +192,9 @@ class User implements UserInterface
         $this->isVerified = $isVerified;
     }
 
-    /**
-     * @ORM\Column(type="string", length=64)
-     */
-    protected $password;
-
     public function eraseCredentials()
     {
-        return null;
-    }
-
-    public function getRole()
-    {
-        return $this->role;
-    }
-
-    public function setRole($role = null)
-    {
-        $this->role = $role;
-    }
-
-    public function getRoles()
-    {
-        return [$this->getRole()];
-    }
-
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    public function getUsername()
-    {
-        return $this->email;
-    }
-
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    public function setPassword($password)
-    {
-        $this->password = $password;
-    }
-
-    public function getPlainPassword()
-    {
-        return $this->plainPassword;
-    }
-
-    public function setPlainPassword($plainPassword)
-    {
-        $this->plainPassword = $plainPassword;
+        // TODO: Implement eraseCredentials() method.
     }
 
     public function getSalt()

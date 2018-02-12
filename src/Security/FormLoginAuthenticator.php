@@ -1,6 +1,7 @@
 <?php
 namespace App\Security;
 
+use App\Exception\Authentication\NotVerifiedEmailException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -18,6 +19,7 @@ class FormLoginAuthenticator extends AbstractFormLoginAuthenticator
 {
     private $router;
     private $encoder;
+    private $user;
 
     public function __construct(RouterInterface $router, UserPasswordEncoderInterface $encoder)
     {
@@ -51,17 +53,20 @@ class FormLoginAuthenticator extends AbstractFormLoginAuthenticator
     public function checkCredentials($credentials, UserInterface $user)
     {
         $plainPassword = $credentials['password'];
-        if ($this->encoder->isPasswordValid($user, $plainPassword)) {
-            return true;
+        if (!$this->encoder->isPasswordValid($user, $plainPassword)) {
+            throw new BadCredentialsException();
         }
 
-        throw new BadCredentialsException();
+        if (!$user->getIsVerified()){
+            throw new NotVerifiedEmailException();
+        }
+
+        return true;
     }
 
-    public function onAuthenticationSuccess( Request $request, TokenInterface $token, $providerKey)
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-
-        $url = $this->router->generate('verified');
+        $url = $this->router->generate('home');
 
         return new RedirectResponse($url);
     }
