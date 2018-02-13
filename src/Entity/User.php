@@ -25,11 +25,6 @@ class User implements UserInterface
     protected $email;
 
     /**
-     * @ORM\Column(type="string", length=40)
-     */
-    protected $name;
-
-    /**
      * @ORM\Column(type="string")
      */
     protected $nom;
@@ -45,22 +40,6 @@ class User implements UserInterface
     protected $emailToken;
 
     /**
-     * @return mixed
-     */
-    public function getNom()
-    {
-        return $this->nom;
-    }
-
-    /**
-     * @param mixed $nom
-     */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-    }
-
-    /**
      * @Assert\Length(max=4096)
      */
     protected $plainPassword;
@@ -74,6 +53,13 @@ class User implements UserInterface
      * @ORM\Column(type="boolean")
      */
     protected $isVerified;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\OneToOne(targetEntity="App\Entity\UserProfile", inversedBy="user")
+     * @ORM\JoinColumn(name="profile_id", referencedColumnName="id")
+     */
+    protected $profile;
 
 
 
@@ -99,22 +85,6 @@ class User implements UserInterface
     public function setEmail($email)
     {
         $this->email = $email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
     }
 
     /**
