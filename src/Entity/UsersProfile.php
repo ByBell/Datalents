@@ -3,9 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UsersProfileRepository")
+ * @ORM\Entity
  */
 class UsersProfile
 {
@@ -18,7 +18,8 @@ class UsersProfile
     /**
      * @ORM\Column(type="string")
      */
-    private $nom;
+    private $name;
+
     /**
      * @ORM\Column(type="string")
      */
@@ -27,65 +28,53 @@ class UsersProfile
     /**
      * @ORM\Column(type="string")
      */
-    private $titre;
+    private $promo;
 
     /**
-     * @return mixed
+     * @ORM\Column(type="string")
      */
-    public function getNom()
-    {
-        return $this->nom;
-    }
+    private $tel;
 
     /**
-     * @param mixed $nom
+     * @ORM\Column(type="text")
      */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-    }
+    private $texte;
 
     /**
-     * @return mixed
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Merci d'upload une image jpg")
+     * @Assert\Image()
      */
-    public function getPrenom()
-    {
-        return $this->prenom;
-    }
+    private $image;
 
     /**
-     * @param mixed $prenom
+     * @ORM\Column(type="string")
      */
-    public function setPrenom($prenom)
-    {
-        $this->prenom = $prenom;
-    }
+    private $competence;
 
     /**
-     * @return mixed
+     * @ORM\Column(type="string")
      */
-    public function getEmail()
-    {
-        return $this->email;
-    }
+    private $projet;
 
     /**
-     * @return mixed
+     * @ORM\Column(type="string")
      */
-    public function getTitre()
-    {
-        return $this->titre;
-    }
-
-
+    private $hobby;
 
     /**
-     * @param mixed $titre
+     * @ORM\Column(type="string")
      */
-    public function setTitre($titre)
-    {
-        $this->titre = $titre;
-    }
+    private $disponible;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $lieu;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $invitation;
 }

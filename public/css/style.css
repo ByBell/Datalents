@@ -1,61 +1,17 @@
-.animation{
-    position: absolute;
-    height:100px;
-    width:100px;
-}
-.bouton-animation{
-    position: absolute;
-    left:calc(50% - 2em);
-    top:calc(50% - 2em);
-    z-index:2;
-    border-radius: 50px;
-    margin:auto;
-}
-.bouton{
-    position: absolute;
-    z-index: 1;
-    border-radius: 50px;
-    transition-duration: 0.3s;
-
-}
-.animation:hover .bouton-animation{
-    transform: scale(0.8);transition-duration: 0.3s;
-
+.logomini{
+  width: 20px;
+  
 }
 
-.animation:hover .animation1{
-    transform: translateY(3em);
-    transition: cubic-bezier(.53,.01,.58,.99);
-    transition-duration: 0.3s;
-
+.btn-primary{
+  background-color: #E00122;
+  margin: 0 5em;
+  align-self: center;
 }
 
-.animation:hover .animation2{
-    transform: translateX(3em);
-    transition: cubic-bezier(.53,.01,.58,.99);
-    transition-duration: 0.3s;
-
+.bouton-dashboard{
+  
+  padding-top: 12em;
+  display: flex;
+  justify-content: center;
 }
-.animation:hover .animation3{
-    transform: translateY(-3em);
-    transition: cubic-bezier(.53,.01,.58,.99);
-    transition-duration: 0.3s;
-
-}
-
-.animation:hover .animation4{
-    transform: translateX(-3em);
-    transition: cubic-bezier(.53,.01,.58,.99);
-    transition-duration: 0.3s;
-
-}
-
-
-.option-animation{
-    transition-duration: 0.5s;
-    position: absolute;
-    left:calc(50% - 2em);
-    top:calc(50% - 2em);
-
-}
-
