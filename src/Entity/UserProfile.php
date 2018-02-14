@@ -17,43 +17,42 @@ class UserProfile
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="user_profile")
-     * @ORM\Column(type="integer")
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="profile")
      */
     private $user;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $firstname;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $lastname;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $photo;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $resume;
 
     /**
-     * @ORM\Column(type="array", length=255)
+     * @ORM\Column(type="array", length=255, nullable=true)
      */
     private $skills;
 
     /**
-     * @ORM\Column(type="array", length=255)
+     * @ORM\Column(type="array", length=255, nullable=true)
      */
     private $hobbies;
 
@@ -227,6 +226,12 @@ class UserProfile
     public function setHobbies($hobbies)
     {
         $this->hobbies = $hobbies;
+    }
+
+
+    public function __toString()
+    {
+        return $this->getFirstname().' '.$this->getLastname();
     }
 
 

@@ -1,6 +1,7 @@
 <?php
 namespace App\Form;
 
+use App\Entity\UserProfile;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -11,23 +12,19 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserType extends AbstractType
+class FullNameType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class,['label' => 'Adresse email'])
-            ->add('plainPassword', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'first_options' => ['label' => 'Mot de Passe'],
-                'second_options' => ['label' => 'Confirmer Mot de Passe'],
-            ]);
+            ->add('firstname', TextType::class, ['label' => 'Prénom'])
+            ->add('lastname', RepeatedType::class, ['label' => 'Nom']);
     }
 
     public function configureOptions(OptionsResolver $resolver)
-{
-    $resolver->setDefaults([
-        'data_class' => 'App\Entity\User',
-    ]);
-}
+    {
+        $resolver->setDefaults([
+            'data_class' => UserProfile::class,
+        ]);
+    }
 }

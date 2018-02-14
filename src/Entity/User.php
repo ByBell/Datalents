@@ -50,8 +50,7 @@ class User implements UserInterface
     protected $isVerified;
 
     /**
-     * @ORM\Column(type="integer")
-     * @ORM\OneToOne(targetEntity="App\Entity\UserProfile", inversedBy="user")
+     * @ORM\OneToOne(targetEntity="App\Entity\UserProfile", inversedBy="user", cascade={"persist"})
      * @ORM\JoinColumn(name="profile_id", referencedColumnName="id")
      */
     protected $profile;
@@ -186,5 +185,26 @@ class User implements UserInterface
     public function getSalt()
     {
         return null;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+    }
+
+    /**
+     * @param mixed $profile
+     */
+    public function setProfile(UserProfile $profile)
+    {
+        $this->profile = $profile;
+    }
+
+    public function __toString()
+    {
+        return $this->getEmail();
     }
 }
