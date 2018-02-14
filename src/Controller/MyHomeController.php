@@ -88,8 +88,9 @@ class MyHomeController extends Controller
 
             $em = $this->getDoctrine()->getManager();
 
-            $user->setPersonality($resultat);
-            $em->persist($user);
+            $profile = $user->getProfile();
+            $profile->setPersonality($resultat);
+            $em->persist($profile);
             $em->flush();
 
 

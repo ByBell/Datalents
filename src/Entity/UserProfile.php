@@ -47,6 +47,27 @@ class UserProfile
     private $resume;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $personality;
+
+    /**
+     * @return mixed
+     */
+    public function getPersonality()
+    {
+        return $this->personality;
+    }
+
+    /**
+     * @param mixed $personality
+     */
+    public function setPersonality($personality)
+    {
+        $this->personality = $personality;
+    }
+
+    /**
      * @ORM\Column(type="array", length=255, nullable=true)
      */
     private $skills;
