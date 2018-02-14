@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\UserProfile;
 use App\Form\ResetPasswordType;
 use App\Form\UserType;
 use App\Form\forgetType;
@@ -74,7 +75,10 @@ class AuthController extends Controller
     public function registerAction(Request $request, \Swift_Mailer $mailer)
     {
         // Create a new blank user and process the form
+        $userProfile = new UserProfile();
         $user = new User();
+        $user->setProfile($userProfile);
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
@@ -82,6 +86,7 @@ class AuthController extends Controller
             // Encode the new users password
             $encoder = $this->get('security.password_encoder');
             $password = $encoder->encodePassword($user, $user->getPlainPassword());
+            $user->setRole('ROLE_USER');
             $user->setPassword($password);
             $user->setIsVerified(false);
 

@@ -1,5 +1,5 @@
 {% extends 'baseHome.html.twig' %}
-
+{% block activedash %} class="active"{% endblock %}
 {% block body %}
 <div class="panel-header panel-header-lg" style="background-image:url(/img/baniere_dashboard.png)">
 
@@ -82,19 +82,19 @@
                     <div class="card ">
                         <div class="card-header">
                             <h5 class="card-category">1er Connexion</h5>
-                            <h2 class="card-title">Crée Mon Profile</h2>
+                            <h2 class="card-title text-center ">Crée Mon Profile</h2>
 
-                            <h4>Profile completé à <b style="color:green">15%</b></h4>
+                            <h4 class="text-center">Profile completé à <b style="color:green">15%</b></h4>
                         
                         </div>
-                        <div class="card-body">
-                        <div class="col-md-12" style="display:flex; justify-content:center">
+                        <div class="card-body row">
+                        <div class="col-md-4" style="display:flex; justify-content:center">
                                 <a class="btn btn-primary btn-round" style="margin:1em auto" href="">Remplir mon profile</a>
                         </div>
-                        <div class="col-md-12" style="display:flex; justify-content:center">
-                                <a class="btn btn-primary btn-round" style="margin:1em auto" href="">Passez le test de personalité</a>
+                        <div class="col-md-4" style="display:flex; justify-content:center">
+                                <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('test') }}">Passez le test de personalité</a>
                         </div>
-                        <div class="col-md-12" style="display:flex; justify-content:center">
+                        <div class="col-md-4" style="display:flex; justify-content:center">
                                 <a class="btn btn-primary btn-round" style="margin:1em auto" href="">Rajoutez une image</a>
                         </div>
                     </div>
@@ -111,35 +111,13 @@
                             
                         </div>
                         <div class="card-body col-md-12" style="display:flex; justify-content:center">
-                                <a class="btn btn-primary btn-round" style="margin:1em auto" href="">Voire mon profile</a>
+                                <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('profile') }}">Voire mon profile</a>
                         </div>
                     </div>
             </div>
 
             
-            <div class="col-md-4">
-                    <div class="card ">
-                        <div class="card-header">
-                            <h5 class="card-category">Rappel</h5>
-                            <h2 class="card-title">Todo</h2>
 
-                            
-                        
-                        </div>
-                        <div class="card-body">
-                            <textarea name="" id="" cols="50" rows="1"></textarea>
-                            <textarea name="" id="" cols="50" rows="1"></textarea>
-                            <textarea name="" id="" cols="50" rows="1"></textarea>
-                            <textarea name="" id="" cols="50" rows="1"></textarea>
-                            <textarea name="" id="" cols="50" rows="1"></textarea>
-                            <textarea name="" id="" cols="50" rows="1"></textarea>
-                            <textarea name="" id="" cols="50" rows="1"></textarea>
-                            <textarea name="" id="" cols="50" rows="1"></textarea>
-
-                               
-                        </div>
-                    </div>
-            </div>
             
         <div class="col-md-4">
             <div class="card card-chart">
@@ -251,6 +229,29 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="card ">
+                <div class="card-header">
+                    <h5 class="card-category">Rappel</h5>
+                    <h2 class="card-title">Todo</h2>
+
+
+
+                </div>
+                <div class="card-body">
+                    <textarea name="" id="" cols="40" rows="1"></textarea>
+                    <textarea name="" id="" cols="40" rows="1"></textarea>
+                    <textarea name="" id="" cols="40" rows="1"></textarea>
+                    <textarea name="" id="" cols="40" rows="1"></textarea>
+                    <textarea name="" id="" cols="40" rows="1"></textarea>
+                    <textarea name="" id="" cols="40" rows="1"></textarea>
+                    <textarea name="" id="" cols="40" rows="1"></textarea>
+                    <textarea name="" id="" cols="40" rows="1"></textarea>
+
+
+                </div>
+            </div>
+        </div>
     
         
 
@@ -264,7 +265,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Profile recommandé</h4>
+                    <h4 class="card-category">Profils recommandés</h4>
                     <h2 class="card-title text-center">Timothée Poincheval</h2>
                 </div>
                 <div class="card-body">
@@ -284,7 +285,7 @@
         <div class="col-md-4">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title"> Profile recommandé</h4>
+                        <h4 class="card-category">Profils recommandés</h4>
                         <h2 class="card-title text-center">Timothée Poincheval</h2>
                     </div>
                     <div class="card-body">
@@ -305,7 +306,7 @@
             <div class="col-md-4">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title"> Profile recommandé</h4>
+                            <h4 class="card-category"> Profils recommandés</h4>
                             <h2 class="card-title text-center">Timothée Poincheval</h2>
                         </div>
                         <div class="card-body">

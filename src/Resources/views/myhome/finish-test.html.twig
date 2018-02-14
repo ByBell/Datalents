@@ -1,0 +1,59 @@
+{% extends 'baseHome.html.twig' %}
+
+{% block activepofile %} active {% endblock %}
+
+{% block body %}
+    <div class="panel-header panel-header-lg" style="background-image: linear-gradient(135deg, #0500a3 0%,#d80003 100%);">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="photo col-md-4" style="display:flex; justify-content:center">
+                    <img src="/james.jpg" class="rounded-circle img-raised" style="width:250px; height:250px;">
+                </div>
+
+                <div class="col-md-4< d-flex flex-column justify-content-end">
+                    <h2 style="color:white">Timothée Poincheval</h2>
+
+
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="card ">
+            <div class="card-header">
+                <h5 class="card-category">Résultats Test de Personalité</h5>
+                <h2 class="card-title text-center ">Ce test vous définis comme:</h2>
+
+
+
+            </div>
+            <div class="card-body">
+                <h4 class="text-center"><b>{{ personality[0] }}</b></h4>
+                <div >
+                    <p>Vos traits de personnalité sont:</p>
+                    <ul>
+                        <li>{{ personality[1] }}</li>
+                        <li>{{ personality[2] }}</li>
+                        <li>{{ personality[3] }}</li>
+                        <li>{{ personality[4] }}</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 d-flex justify-content-center">
+        <a class="btn btn-primary btn-round" href="{{ path('profile') }}">Mon profile</a>
+    </div>
+
+
+{% endblock %}

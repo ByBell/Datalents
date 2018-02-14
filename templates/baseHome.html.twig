@@ -10,14 +10,14 @@
 
 
     <!--     Fonts and icons     -->
-    <link href="css/font.css" rel="stylesheet">
+    <link href="/css/font.css" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
 
     <!-- CSS Files -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/now-ui-dashboard.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/now-ui-dashboard.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 
     <style type="text/css">
         /* Chart.js */
@@ -58,7 +58,7 @@
 
             <div class="logo" style="background-color:#002D44">
                 <a href="{{path('home')}}" class="simple-text logo-mini">
-                    <img src="img/logo_min.png" alt="Logo" class="logomini">
+                    <img src="/img/logo_min.png" alt="Logo" class="logomini">
 
                 </a>
 
@@ -74,12 +74,12 @@
             </div>
 
             <div class="sidebar-wrapper" style="background-color:#002D44">
-                <div class="user">
+                <div class="user {% block activepofile %}  {% endblock %}">
                     <div class="photo">
                         <img src="/james.jpg">
                     </div>
                     <div class="info">
-                        <a href="">
+                        <a href="{{ path('profile') }}">
                             <span>
                                 Mon profile
 
@@ -89,14 +89,14 @@
                 </div>
                 <ul class="nav">
 
-                    <li class="active">
+                    <li {% block activedash %} {% endblock %}>
                         <a href="{{path('home')}}">
                             <i class="now-ui-icons design_app"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
 
-                    <li>
+                    <li {% block activeprojet %} {% endblock %}>
                         <a href="">
                             <i class="now-ui-icons design_image"></i>
                             <p>Mes Projets
@@ -105,7 +105,7 @@
                         </a>
                     </li>
 
-                    <li>
+                    <li {% block activeformation %} {% endblock %}>
                         <a href="">
                             <i class="now-ui-icons education_atom"></i>
                             <p>Mes Formations
@@ -115,10 +115,10 @@
                     </li>
 
 
-                    <li>
+                    <li {% block activecalendrier %} {% endblock %}>
                         <a href="">
                             <i class="now-ui-icons location_pin"></i>
-                            <p>Maps
+                            <p>Calendrier
 
                             </p>
                         </a>
@@ -126,10 +126,10 @@
 
 
 
-                    <li>
+                    <li {% block activetalents %} {% endblock %}>
                         <a href="">
                             <i class="now-ui-icons media-1_album"></i>
-                            <p>Calendrier</p>
+                            <p>Les Talents</p>
                         </a>
                     </li>
 
@@ -138,7 +138,7 @@
         </div>
 
 
-        <div class="main-panel">
+        <div class="main-panel" style="min-height: 100vh">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute bg-primary fixed-top">
                 <div class="container-fluid">
@@ -175,7 +175,7 @@
 {%block body %}{% endblock %}
 
 
-<footer class="footer">
+<footer class="footer" style="position: relative; bottom: 0px;padding-bottom: 10px ">
         <div class="container-fluid">
             <nav>
                 <ul>
@@ -200,7 +200,7 @@
                 Designed and Coded by Datalents© in 2018
             </div>
         </div>
-    </footer>
+</footer>
 
 
 </div>
@@ -208,7 +208,7 @@
 
 
 
-</div>
+
 
 
 

@@ -17,13 +17,6 @@ class EditUserType extends AbstractType
         $builder
             ->add('name', TextType::class)
             ->add('email', EmailType::class)
-            ->add('role', ChoiceType::class, array(
-                'choices'  => array(
-                    'User' => 'ROLE_USER',
-                    'Admin' => 'ROLE_ADMIN',
-
-                )
-            ))
             ->add('plainPassword', RepeatedType::class, [
                 'required' => false,
                 'type' => PasswordType::class,

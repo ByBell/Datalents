@@ -7,10 +7,10 @@ Mise en relation d'étudiants du plateau MBA, Mastères et PMD
 
 ## Fonctionnalités
 - [ ] Gestion des comptes
-  - [ ] Inscription
-    - [ ] Confirmation par mail
+  - [X] Inscription
+    - [X] Confirmation par mail
   - [ ] Désinscription
-  - [ ] Connexion
-  - [ ] Déconnexion
+  - [X] Connexion
+  - [X] Déconnexion
   - [ ] Mot de passe oublié
   

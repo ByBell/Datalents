@@ -1,10 +1,34 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseHome.html.twig' %}
+
+{% block activepofile %} active {% endblock %}
 
 {% block body %}
-    <div class="container">
-       <h1>Mon profile</h1>
+    <div class="panel-header panel-header-lg" style="background-image:url(/img/profil_hero_bg.png)">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="photo col-md-4" style="display:flex; justify-content:center">
+                    <img src="/james.jpg" class="rounded-circle img-raised" style="width:250px; height:250px;">
+                </div>
 
-        <a class="btn btn-primary" href="{{ path('logout') }}"> Déconnexion</a>
-        <a class="btn btn-danger"href="{{ path('home') }}">Retour au tableau de bord</a>
+                <div class="col-md-4< d-flex flex-column justify-content-end">
+                    <h2 style="color:white">Timothée Poincheval</h2>
+                    <h3 style="color:white">UX Design</h3>
+                    <h4 style="color:white">Talent: Idéaliste</h4>
+
+                </div>
+
+                <div class="row col-md-4 d-flex flex-column justify-content-end">
+                    <div class="row">
+                        <i style="color:white"class="fas fa-map-marker"></i>
+                        <p style="color:white">Montreuil</p>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
     </div>
+
+
 {% endblock %}

@@ -25,16 +25,6 @@ class User implements UserInterface
     protected $email;
 
     /**
-     * @ORM\Column(type="string", length=40)
-     */
-    protected $name;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    protected $nom;
-
-    /**
      * @ORM\Column(type="string", length=50)
      */
     protected $role;
@@ -43,22 +33,6 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=64, nullable=true)
      */
     protected $emailToken;
-
-    /**
-     * @return mixed
-     */
-    public function getNom()
-    {
-        return $this->nom;
-    }
-
-    /**
-     * @param mixed $nom
-     */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-    }
 
     /**
      * @Assert\Length(max=4096)
@@ -74,6 +48,12 @@ class User implements UserInterface
      * @ORM\Column(type="boolean")
      */
     protected $isVerified;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\UserProfile", inversedBy="user", cascade={"persist"})
+     * @ORM\JoinColumn(name="profile_id", referencedColumnName="id")
+     */
+    protected $profile;
 
 
 
@@ -99,22 +79,6 @@ class User implements UserInterface
     public function setEmail($email)
     {
         $this->email = $email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
     }
 
     /**
@@ -221,5 +185,26 @@ class User implements UserInterface
     public function getSalt()
     {
         return null;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+    }
+
+    /**
+     * @param mixed $profile
+     */
+    public function setProfile(UserProfile $profile)
+    {
+        $this->profile = $profile;
+    }
+
+    public function __toString()
+    {
+        return $this->getEmail();
     }
 }
