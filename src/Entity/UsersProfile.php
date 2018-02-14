@@ -20,61 +20,7 @@ class UsersProfile
      */
     private $name;
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $prenom;
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $promo;
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $tel;
 
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $texte;
-
-    /**
-     * @ORM\Column(type="string")
-     *
-     * @Assert\NotBlank(message="Merci d'upload une image jpg")
-     * @Assert\Image()
-     */
-    private $image;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $competence;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $projet;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $hobby;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $disponible;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $lieu;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $invitation;
 }

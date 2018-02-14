@@ -45,6 +45,31 @@ class User implements UserInterface
     protected $emailToken;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $personality;
+
+    /**
+     * @return mixed
+     */
+    public function getPersonality()
+    {
+        return $this->personality;
+    }
+
+    /**
+     * @param mixed $personality
+     */
+    public function setPersonality($personality)
+    {
+        $this->personality = $personality;
+    }
+
+
+
+
+
+    /**
      * @return mixed
      */
     public function getNom()

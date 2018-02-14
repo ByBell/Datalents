@@ -33,9 +33,9 @@ class UserType extends AbstractType
     }
 
     public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class' => 'App\Entity\User',
-        ]);
-    }
+{
+    $resolver->setDefaults([
+        'data_class' => 'App\Entity\User',
+    ]);
+}
 }
