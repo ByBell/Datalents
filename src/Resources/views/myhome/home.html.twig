@@ -1,23 +1,329 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'baseHome.html.twig' %}
+{% block activedash %} class="active"{% endblock %}
 {% block body %}
-    <div class="container">
-       <h1>Bienvenue dans mon espace</h1>
-        <p>{{ email }}</p>
-        <a class="btn btn-danger" href="{{ path('logout') }}"> Déconnexion</a>
-        <a class="btn btn-danger"href="{{ path('profile') }}">Mon profile</a>
-        <a class="btn btn-danger"href="{{ path('account') }}">Mon compte</a>
+<div class="panel-header panel-header-lg" style="background-image:url(/img/baniere_dashboard.png)">
 
-        <hr>
-        <a href="btn btn-primary"></a>
-        <div class="animation">
-                <a class="btn btn-primary bouton-animation" href="{{ path('homepage') }}"> + </a>
-            <div class="option-animation">
-                <a class="btn btn-primary bouton animation1" href="{{ path('homepage') }}">1</a>
-                <a class="btn btn-primary bouton animation2" href="{{ path('homepage') }}">2</a>
-                <a class="btn btn-primary bouton animation3" href="{{ path('homepage') }}">3</a>
-                <a class="btn btn-primary bouton animation4" href="{{ path('homepage') }}">4</a>
+    <div class="container-fluid bouton-dashboard">
+
+
+
+
+        <a class="btn btn-primary btn-round btn-large" href="">Lancer un Projet</a>
+
+
+
+        <a class="btn btn-primary btn-round btn-large" href="">Trouver une Formation</a>
+
+
+
+    </div>
+
+
+
+
+
+
+</div>
+
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-stats card-raised">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="statistics">
+                                <div class="info">
+                                    <div class="icon icon-primary">
+                                        <i class="now-ui-icons ui-2_chat-round"></i>
+                                    </div>
+                                    <h3 class="info-title">PMD</h3>
+                                    <h6 class="stats-title">Promo</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="statistics">
+                                <div class="info">
+                                    <div class="icon icon-success">
+                                        <i class="now-ui-icons business_chart-pie-36"></i>
+                                    </div>
+                                    <h3 class="info-title">33</h3>
+                                    <h6 class="stats-title">Projets</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="statistics">
+                                <div class="info">
+                                    <div class="icon icon-info">
+                                        <i class="now-ui-icons users_single-02"></i>
+                                    </div>
+                                    <h3 class="info-title">55</h3>
+                                    <h6 class="stats-title">Utilisateurs</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
+
+    <!-- <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple" data-toggle="dropdown">
+7 days
+</button> -->
+
+    <div class="row">
+            <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header">
+                            <h5 class="card-category">1er Connexion</h5>
+                            <h2 class="card-title text-center ">Crée Mon Profile</h2>
+
+                            <h4 class="text-center">Profile completé à <b style="color:green">15%</b></h4>
+                        
+                        </div>
+                        <div class="card-body row">
+                        <div class="col-md-4" style="display:flex; justify-content:center">
+                                <a class="btn btn-primary btn-round" style="margin:1em auto" href="">Remplir mon profile</a>
+                        </div>
+                        <div class="col-md-4" style="display:flex; justify-content:center">
+                                <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('test') }}">Passez le test de personalité</a>
+                        </div>
+                        <div class="col-md-4" style="display:flex; justify-content:center">
+                                <a class="btn btn-primary btn-round" style="margin:1em auto" href="">Rajoutez une image</a>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+            <div class="col-md-4">
+                    <div class="card ">
+                        <div class="card-header">
+                            <h5 class="card-category">Mon profile</h5>
+                            <h2 class="card-title">Timothée Poincheval</h2>
+                            <div class="photo">
+                                <img src="/james.jpg" class="rounded-circle img-raised">
+                            </div>
+                            
+                        </div>
+                        <div class="card-body col-md-12" style="display:flex; justify-content:center">
+                                <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('profile') }}">Voire mon profile</a>
+                        </div>
+                    </div>
+            </div>
+
+            
+
+            
+        <div class="col-md-4">
+            <div class="card card-chart">
+                <div class="card-header">
+                    <h5 class="card-category">Projets En Cours</h5>
+                    <h2 class="card-title">Datalents</h2>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
+                            <i class="now-ui-icons loader_gear"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="">Action</a>
+                            <a class="dropdown-item" href="">Another action</a>
+                            <a class="dropdown-item" href="">Something else here</a>
+                            <a class="dropdown-item text-danger" href="">Remove Data</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div>
+
+                        <i class="fas fa-briefcase col-md-12 " style="font-size:90px; margin:0 auto;text-align: center;"></i>
+
+
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="photo">
+                                            <img src="/james.jpg" class="rounded-circle img-raised" style="width:40px;">
+                                        </div>
+                                    </td>
+                                    <td>Steven</td>
+                                    <td class="text-right">
+                                        Design
+                                    </td>
+                                    <td class="text-right">
+                                        <i class="fas fa-check"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="photo">
+                                            <img src="/james.jpg" class="rounded-circle img-raised" style="width:40px;">
+                                        </div>
+                                    </td>
+                                    <td>Brendan</td>
+                                    <td class="text-right">
+                                        Programmation
+                                    </td>
+                                    <td class="text-right">
+                                        <i class="fas fa-check"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="photo">
+                                            <img src="/james.jpg" class="rounded-circle img-raised" style="width:40px;">
+                                        </div>
+                                    </td>
+                                    <td>Bryan</td>
+                                    <td class="text-right">
+                                        Chef de projet/Design
+                                    </td>
+                                    <td class="text-right">
+                                        <i class="fas fa-check"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="photo">
+                                            <img src="/james.jpg" class="rounded-circle img-raised" style="width:40px;">
+                                        </div>
+                                    </td>
+                                    <td>Gaetan</td>
+                                    <td class="text-right">
+                                        Programmation
+                                    </td>
+                                    <td class="text-right">
+                                        <i class="fas fa-stopwatch"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="photo">
+                                            <img src="/james.jpg" class="rounded-circle img-raised" style="width:40px;">
+                                        </div>
+                                    </td>
+                                    <td>Timothée</td>
+                                    <td class="text-right">
+                                        Programmation
+                                    </td>
+                                    <td class="text-right">
+                                        <i class="fas fa-stopwatch"></i>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="now-ui-icons arrows-1_refresh-69"></i> Projet pour le 23/05/2018
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card ">
+                <div class="card-header">
+                    <h5 class="card-category">Rappel</h5>
+                    <h2 class="card-title">Todo</h2>
+
+
+
+                </div>
+                <div class="card-body">
+                    <textarea name="" id="" cols="40" rows="1"></textarea>
+                    <textarea name="" id="" cols="40" rows="1"></textarea>
+                    <textarea name="" id="" cols="40" rows="1"></textarea>
+                    <textarea name="" id="" cols="40" rows="1"></textarea>
+                    <textarea name="" id="" cols="40" rows="1"></textarea>
+                    <textarea name="" id="" cols="40" rows="1"></textarea>
+                    <textarea name="" id="" cols="40" rows="1"></textarea>
+                    <textarea name="" id="" cols="40" rows="1"></textarea>
+
+
+                </div>
+            </div>
+        </div>
+    
+        
+
+
+        
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-category">Profils recommandés</h4>
+                    <h2 class="card-title text-center">Timothée Poincheval</h2>
+                </div>
+                <div class="card-body">
+                        
+                        <div class="photo col-md-12" style="display:flex; justify-content:center">
+                                <img src="/james.jpg" class="rounded-circle img-raised" style="width:130px; height:130px;">
+                        </div>
+                        <div>
+                            <h4 class="card-title">Compétences</h4>
+                        </div>
+                    
+                </div>
+                <div class="card-footer"></div>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-category">Profils recommandés</h4>
+                        <h2 class="card-title text-center">Timothée Poincheval</h2>
+                    </div>
+                    <div class="card-body">
+                            
+                            <div class="photo col-md-12" style="display:flex; justify-content:center">
+                                    <img src="/james.jpg" class="rounded-circle img-raised" style="width:130px; height:130px;">
+                            </div>
+                            <div>
+                                <h4 class="card-title">Compétences</h4>
+                            </div>
+                        
+                    </div>
+                    <div class="card-footer"></div>
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-category"> Profils recommandés</h4>
+                            <h2 class="card-title text-center">Timothée Poincheval</h2>
+                        </div>
+                        <div class="card-body">
+                                
+                                <div class="photo col-md-12" style="display:flex; justify-content:center">
+                                        <img src="/james.jpg" class="rounded-circle img-raised" style="width:130px; height:130px;">
+                                </div>
+                                <div>
+                                    <h4 >Compétences</h4>
+                                </div>
+                            
+                        </div>
+                        <div class="card-footer"></div>
+                    </div>
+
+                </div>
+    </div>
+
+</div>
 {% endblock %}

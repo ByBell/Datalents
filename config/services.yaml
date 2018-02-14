@@ -29,3 +29,7 @@ services:
     app.form_login_authenticator:
         class: App\Security\FormLoginAuthenticator
         arguments: ["@router", "@security.password_encoder"]
+
+
+    personality.brain:
+        class: App\Services\PersonalityBrain
