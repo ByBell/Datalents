@@ -14,14 +14,14 @@ class PersonalityBrain
     public function determinePersonality($resultat)
     {
         $personality =['','','',''];
-        if ($resultat == 'INFP' or 'ENFP' or 'INFJ' or 'ENFJ')
-        {$personality[0] ='Diplomate';}
-        elseif ($resultat == 'ISTJ' or 'ESTJ' or 'ISFJ' or 'ESFJ')
-        {$personality[0] ='Un Sentinelle';}
-        elseif ($resultat == 'INTJ' or 'ENTJ' or 'INTP' or 'ENTP')
-        {$personality[0] ='Rationnel';}
+        if ($resultat == 'INTJ' or $resultat == 'ENTJ' or $resultat ==  'INTP' or $resultat == 'ENTP')
+            {$personality[0] ='Rationnel';}
+        elseif ($resultat == 'INFP' or $resultat =='ENFP' or $resultat == 'INFJ' or $resultat =='ENFJ')
+            {$personality[0] ='Diplomate';}
+        elseif ($resultat == 'ISTJ' or $resultat =='ESTJ' or $resultat =='ISFJ' or $resultat =='ESFJ')
+            {$personality[0] ='Un Sentinelle';}
         else
-        {$personality[0] ='Un Explorateur';}
+            {$personality[0] ='Un Explorateur';}
 
         if ($resultat[0] == 'I')
         {$personality[1]='Introvertie';}
@@ -42,6 +42,6 @@ class PersonalityBrain
         return $personality;
     }
 
-    }
+}
 
 
