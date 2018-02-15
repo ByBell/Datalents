@@ -16,8 +16,8 @@
     </hero>
 
     <div class="split-hero">
-        <button><a href="/register">Inscription</a></button>
-        <button><a href="/login">Connexion</a></button>
+        <button><a href="{{ path('register') }}">Inscription</a></button>
+        <button><a href="{{ path('login') }}">Connexion</a></button>
     </div>
 
 </header>
@@ -59,7 +59,7 @@
             <p>Nous avons conçu un algorithme intelligent qui analyse l'ensemble des profils pour toujours vous proposer les
                 meilleurs personnes pour vos projets. Notre algorithme apprend de vous pour vous offrir une expérience toujours
                 plus précise et satisfaisante.</p>
-            <button><a href="/register">Découvrir la plateforme</a></button>
+            <button><a href="{{ path('register') }}">Découvrir la plateforme</a></button>
         </div>
         <div>
             <img src="http://via.placeholder.com/300x300" alt="">
@@ -75,7 +75,7 @@
             <p>Dans votre profil personnalisé, votre expérience est mise en avant pour une valorisation de votre travail auprès
                 des autres utilisateurs. N'hésitez pas à mettre en avant vos réalisations ainsi que vos compétences, vous
                 serez d'autant plus reconnu.</p>
-            <button><a href="/register">Je crée mon profil</a></button>
+            <button><a href="{{ path('register') }}">Je crée mon profil</a></button>
         </div>
     </section>
 
