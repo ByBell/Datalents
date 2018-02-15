@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserProfileRepository")
@@ -42,30 +43,14 @@ class UserProfile
     private $title;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $location;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $resume;
-
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $personality;
-
-    /**
-     * @return mixed
-     */
-    public function getPersonality()
-    {
-        return $this->personality;
-    }
-
-    /**
-     * @param mixed $personality
-     */
-    public function setPersonality($personality)
-    {
-        $this->personality = $personality;
-    }
 
     /**
      * @ORM\Column(type="array", length=255, nullable=true)
@@ -78,6 +63,7 @@ class UserProfile
     private $hobbies;
 
     /**
+     *
      * @ORM\ManyToMany(targetEntity="App\Entity\Project")
      * @ORM\JoinTable(name="users_projects",
      *     joinColumns={
@@ -86,6 +72,7 @@ class UserProfile
      *     inverseJoinColumns={
      *          @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      *     })
+
      */
     private $projects;
 
@@ -172,6 +159,22 @@ class UserProfile
     /**
      * @return mixed
      */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * @param mixed $location
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getResume()
     {
         return $this->resume;
@@ -198,23 +201,29 @@ class UserProfile
      */
     public function setPhoto($photo)
     {
-        $this->photo = $photo;
+        if(!empty($photo)){
+            $this->photo = $photo;
+        }
     }
 
-    /**
-     * @return mixed
-     */
+    public function addProject(Project $project)
+    {
+        $this->projects[] = $project;
+        return $this;
+    }
+    public function __construct()
+    {
+        $this->projects = new ArrayCollection();
+        // ...
+    }
+    public function removeProject(Project $project)
+    {
+        $this->projects->removeElement($project);
+    }
+
     public function getProjects()
     {
         return $this->projects;
-    }
-
-    /**
-     * @param mixed $projects
-     */
-    public function setProjects($projects)
-    {
-        $this->projects = $projects;
     }
 
     /**
@@ -254,6 +263,5 @@ class UserProfile
     {
         return $this->getFirstname().' '.$this->getLastname();
     }
-
 
 }

@@ -76,13 +76,16 @@
             <div class="sidebar-wrapper" style="background-color:#002D44">
                 <div class="user {% block activepofile %}  {% endblock %}">
                     <div class="photo">
-                        <img src="/james.jpg">
+                        <img src="{{ app.user.profile.photo }}">
                     </div>
                     <div class="info">
-                        <a href="{{ path('profile') }}">
+                        <a href="{{ path('edit_profile') }}">
                             <span>
-                                Mon profile
-
+                                {% if app.user.profile.firstname is not empty %}
+                                    {{ app.user.profile.firstname~" "~app.user.profile.lastname }}
+                                {% else %}
+                                    {{ app.user.email }}
+                                {% endif %}
                             </span>
                         </a>
                     </div>
@@ -236,6 +239,7 @@
 <script src="/js/bootstrap-notify.js"></script>
 <script src="/js/now-ui-dashboard.min.js"></script>
 <script src="/js/jquery.sharrre.js"></script>
+<script src="/js/script.js"></script>
 
 
 </body>
