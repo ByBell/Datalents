@@ -2,6 +2,7 @@
 // src/EventListener/BrochureUploadListener.php
 namespace App\EventListener;
 
+use App\Entity\UserProfile;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -34,6 +35,10 @@ class PhotoUploadListener
 
     private function uploadFile($entity)
     {
+        if(!$entity instanceof UserProfile){
+            return;
+        }
+
         $file = $entity->getPhoto();
 
         // only upload new files
