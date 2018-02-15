@@ -10,13 +10,13 @@ a {
 }
 a:hover {
     color: inherit;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 header {
     display: block;
     color: white;
-    background: rgba(191, 175, 50, 0.75);;
+    background: linear-gradient(to right, #007991, #78ffd6);
 }
 
 body {
@@ -74,19 +74,24 @@ header div.split-hero {
 }
 
 header div.split-hero button {
-    padding: 4px 10px;
     border-radius: 12px;
     font-size: 120%;
     margin: 0 1rem;
     border: none;
 }
+header div.split-hero button a {
+    padding: 1rem 2rem;
+    display: inline-block;
+}
 header div.split-hero button:first-of-type {
     color: white;
-    background: black;
+    background: transparent;
+    border: 1px solid white;
 }
 header div.split-hero button:last-of-type{
-    color: black;
-    background: white;
+    color: white;
+    background: transparent;
+    border: 1px solid white;
 }
 
 
@@ -105,11 +110,11 @@ main section {
     margin-bottom: 2.5rem;
 }
 main button {
-    background : red;
-    color: white;
-    border-radius: 15px;
+    background: transparent;
+    color: black;
+    border: 1px solid black;
+    border-radius: 10px;
     padding: .25rem 1rem;
-    border: none;
 }
 main section:first-child {
     text-align: center;
