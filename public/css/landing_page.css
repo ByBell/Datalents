@@ -1,0 +1,70 @@
+html, body {
+    font-size: 14px;
+}
+
+header {
+    display: block;
+    height: 80vh;
+    background: rgba(255, 238,104, .75);
+}
+
+body {
+    background: url('/img/home.jpg') no-repeat top;
+    background-size: cover;
+}
+
+header ul {
+    padding: 0;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+}
+
+header ul li {
+    padding: 0 1rem;
+    list-style-type: none;
+    flex-basis: 15%;
+}
+
+header ul li:first-child {
+    flex-basis: 55%;
+}
+
+header hero {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+main {
+    background: white;
+}
+
+main div.split-hero {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+main div.split-hero section {
+    height: 100%;
+    text-align: center;;
+}
+
+main div.split-hero section:first-child {
+    background: rgba(255, 238,104, .75);
+}
+
+
+
+footer {
+    background: white;
+}
