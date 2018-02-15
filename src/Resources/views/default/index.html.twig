@@ -1,113 +1,116 @@
-{% extends 'base.html.twig' %}
-
-{% block stylesheets %}
-    <link rel="stylesheet" href="/css/landing_page.css">
-{% endblock %}
-
+{% extends 'base.html.twig' %} {% block stylesheets %}
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="/css/landing_page.css"> 
+{% endblock %} 
 {% block body %}
-    <header>
-        <ul>
-            <li>DATALENTS</li>
-            <li>TÉMOIGNAGES</li>
-            <li>NOTRE CONCEPT</li>
-            <li>CONTACT</li>
-        </ul>
-<hr>
-        <hero>
-            <img src="/img/logo_hero.png" alt="">
-            <h1>Trouvez les talents dont vous avez besoin</h1>
-        </hero>
+<header>
+    <ul>
+        <li><a href="{{ path('homepage') }}"><img src="/img/datalents_logo_min.svg" alt=""></a></li>
+        <li><a href="#temoignages">TÉMOIGNAGES</a></li>
+        <li><a href="#concept">NOTRE CONCEPT</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+    </ul>
+    <hero>
+        <img src="/img/datalents_logo.svg" alt="">
+        <h1>Trouvez les talents dont vous avez besoin</h1>
+    </hero>
 
-    </header>
+    <div class="split-hero">
+        <button><a href="{{ path('register') }}">Inscription</a></button>
+        <button><a href="{{ path('login') }}">Connexion</a></button>
+    </div>
 
-    <main>
-        <div class="split-hero">
-            <section>
-                <button>Inscription</button>
-                <button>Connexion</button>
-            </section>
-    
-            <section>
-                <p>"L'innovation, c'est une situation qu'on choisit parce qu'on a une passion brûlante pour quelquechose."</p>
-                <p>Steve Jobs</p>
-            </section>
+</header>
 
+<main>
+    <section id="temoignages">
+        <h2>Une vaste communauté de gens qui vous ressemblent</h2>
+        <p>Grâce à notre plateforme, trouvez ceyx qui vous ressemblent. Que vous recherchiez un compagnon de travail ou juste
+            une personne pour partager des activités, ne cherchez plus, l'aventure commmence ici !</p>
+    </section>
+
+    <section class="list-profile">
+        <article>
+            <img src="http://via.placeholder.com/300x300" alt="">
+            <p>"Grâce à Hetic j'ai découvert une certaine passion pour l'analyse des données que nous pouvons récolter sur un
+                site internet."</p>
+            <p>Jean Godfroy</p>
+            <p>Étudiant en Master Data</p>
+        </article>
+        <article>
+            <img src="http://via.placeholder.com/300x300" alt="">
+            <p>"La PMD m'a permise d'apprendre énormément de choses. Aujourd'hui il me manque des compétences, j'aimerais trouver
+                quelqu'un qui puisse m'aider en design."</p>
+            <p>Florent Faryli</p>
+            <p>Étudiant en Prépa Master Digital</p>
+        </article>
+        <article>
+            <img src="http://via.placeholder.com/300x300" alt="">
+            <p>"Pour la fin de ma formation, je dois réaliser une plateforme web. Je cherche un étudiant pouvant m'aider à la
+                réaliser car je n'ai pas assez de compétence en développement."</p>
+            <p>Bouchra</p>
+            <p>Étudiant en MBA</p>
+        </article>
+    </section>
+
+    <section id="concept" class="content-split">
+        <div>
+            <h2>Une expérience inégalée</h2>
+            <p>Nous avons conçu un algorithme intelligent qui analyse l'ensemble des profils pour toujours vous proposer les
+                meilleurs personnes pour vos projets. Notre algorithme apprend de vous pour vous offrir une expérience toujours
+                plus précise et satisfaisante.</p>
+            <button><a href="{{ path('register') }}">Découvrir la plateforme</a></button>
         </div>
+        <div>
+            <img src="http://via.placeholder.com/300x300" alt="">
+        </div>
+    </section>
 
-        <section>
-            <h2>Une vaste communauté de gens qui vous ressemblent</h2>
-            <p>Grâce à notre plateforme, trouvez ceyx qui vous ressemblent. Que vous recherchiez un compagnon de travail ou juste une personne pour partager des activités, ne cherchez plus, l'aventure commmence ici !</p>
-        </section>
+    <section class="content-split">
+        <div>
+            <img src="http://via.placeholder.com/300x300" alt="">
+        </div>
+        <div>
+            <h2>Votre expérience mise en avant</h2>
+            <p>Dans votre profil personnalisé, votre expérience est mise en avant pour une valorisation de votre travail auprès
+                des autres utilisateurs. N'hésitez pas à mettre en avant vos réalisations ainsi que vos compétences, vous
+                serez d'autant plus reconnu.</p>
+            <button><a href="{{ path('register') }}">Je crée mon profil</a></button>
+        </div>
+    </section>
 
-        <section>
-            <article>
-                <img src="" alt="">
-                <p>"Grâce à Hetic j'ai découvert une certaine passion pour l'analyse des données que nous pouvons récolter sur un site internet."</p>
-                <p>Jean Godfroy</p>
-                <p>Étudiant en Master Data</p>
-            </article>
-            <article>
-                <img src="" alt="">
-                <p>"La PMD m'a permise d'apprendre énormément de choses. Aujourd'hui il me manque des compétences, j'aimerais trouver quelqu'un qui puisse m'aider en design."</p>
-                <p>Florent Faryli</p>
-                <p>Étudiant en Prépa Master Digital</p>
-            </article>
-            <article>
-                <img src="" alt="">
-                <p>"Pour la fin de ma formation, je dois réaliser une plateforme web. Je cherche un étudiant pouvant m'aider à la réaliser car je n'ai pas assez de compétence en développement."</p>
-                <p>Katia</p>
-                <p>Étudiant en MBA</p>
-            </article>
-        </section>
+</main>
 
-        <section>
-            <div>
-                <h2>Une expérience inégalée</h2>
-                <p>Nous avons conçu un algorithme intelligent qui analyse l'ensemble des profils pour toujours vous proposer les meilleurs personnes pour vos projets. Notre algorithme apprend de vous pour vous offrir une expérience toujours plus précise et satisfaisante.</p>
-                <button>Découvrir la plateforme</button>
-            </div>
-            <img src="" alt="">
-        </section>
+<footer>
+    <section id="contact">
+        <form action="">
+            <fieldset>
+                <legend>Contactez-nous</legend>
+                <div>
+                    Votre nom :
+                    <input type="text">
+                </div>
 
-        <section>
-            <div>
-                <h2>Votre expérience mise en avant</h2>
-                <p>Dans votre profil personnalisé, votre expérience est mise en avant pour une valorisation de votre travail auprès des autres utilisateurs. N'hésitez pas à mettre en avant vos réalisations ainsi que vos compétences, vous serez d'autant plus reconnu.</p>
-                <button>Je crée mon profil</button>
-            </div>
-            <img src="" alt="">
-        </section>
+                <div>
+                    Votre mail :
+                    <input type="mail">
+                </div>
 
-    </main>
-
-    <footer>
-        <section>
-            <form action="">
-                <fieldset>
-                    <legend>Contactez-nous</legend>
-                    <div>
-                        Votre nom : <input type="text">
-                    </div>
-
-                    <div>
-                        Votre mail : <input type="mail">
-                    </div>
-
-                    <div>
-                        Votre message : <input type="text">
-                    </div>
+                <div>
+                    Votre message :
+                    <input type="text">
+                </div>
                 <input type="submit" value="valider">
-                </fieldset>
-            </form>
-        </section>
-        <section>
-            <p>Copyright © Datalents 2018</p>
-        </section>
-    </footer>
-    
+            </fieldset>
+        </form>
+    </section>
+    <section>
+        <p>Copyright © Datalents 2018</p>
+    </section>
+</footer>
 
 
-{% endblock %}
 
-{# <a class="btn btn-primary" href="{{ path('login') }}">Connexion</a>
+{% endblock %} {#
+<a class="btn btn-primary" href="{{ path('login') }}">Connexion</a>
 <a class="btn btn-danger" href="{{ path('register') }}">Inscription</a> #}
