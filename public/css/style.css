@@ -14,6 +14,54 @@
     justify-content: center;
 }
 
+/**
+ * Panel header
+ */
+
+.panel-header .form-control{
+    color: #ffffff;
+}
+
+input.form-control{
+    font-size: 0.95em;
+}
+
+/**
+ * Profile result
+ */
+.profile-result{
+    padding-top: 20px;
+    position: relative;
+}
+
+.profile-result .profile-photo{
+    position: relative;
+    display: block;
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    margin: 0 auto;
+    z-index: 2;
+}
+
+.profile-result .profile-card{
+    margin-top: -20px;
+    padding-top: 20px;
+    text-align: center;
+    z-index: 1;
+}
+
+.profile-card .profile-fullname{
+    margin: 0;
+}
+
+.profile-card .profile-header{
+    margin-bottom: 10px;
+}
+
+.profile-card .profile-description{
+    text-align: left;
+}
 
 /**
  * Profile Photo editor
@@ -61,5 +109,9 @@ ul.hobbies-list{
     border-radius: 50px;
     background: #f2f2f2;
     display: inline-block;
-    margin: 0 5px;
+    margin: 0 5px 5px 5px;
+}
+
+.content.content-no-card{
+    margin-top: 0px;
 }

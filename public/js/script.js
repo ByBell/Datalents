@@ -1,6 +1,13 @@
 $(document).ready(function () {
+
+
     renderTags('.hobby', '.hobbies', '.hobbies-list');
     renderTags('.skill', '.skills', '.skills-list');
+});
+
+
+$('img').on('error', function(){
+    $(this).attr('src', '/img/missing.png');
 });
 
 function renderTags(input, destination, ul){

@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping\Index;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserProfileRepository")
+ * @ORM\Table(indexes={@Index(columns={"firstname", "lastname", "title", "resume", "hobbies", "skills"}, flags={"fulltext"})})
  */
 class UserProfile
 {

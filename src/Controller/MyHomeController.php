@@ -203,4 +203,16 @@ class MyHomeController extends Controller
 
         return $this-> render('myhome/resultAddProject.html.twig', ['form' => $form->createView(),'project'=>$project]);
     }
+
+    /**
+     * @Route("/home/search", name="search")
+     */
+    public function searchAction(Request $request){
+        $query = $request->get('q');
+
+        $em = $this->getDoctrine()->getManager();
+        $results = $em->getRepository('App:UserProfile')->search($query);
+
+        return $this->render('myhome/search.html.twig', ['results' => $results, 'query' => $query]);
+    }
 }

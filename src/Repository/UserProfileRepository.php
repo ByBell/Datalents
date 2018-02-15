@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\UserProfile;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\DBALException;
+use PDO;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class UserProfileRepository extends ServiceEntityRepository
@@ -13,16 +15,19 @@ class UserProfileRepository extends ServiceEntityRepository
         parent::__construct($registry, UserProfile::class);
     }
 
-    /*
-    public function findBySomething($value)
+
+    public function search($query)
     {
-        return $this->createQueryBuilder('u')
-            ->where('u.something = :value')->setParameter('value', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $sql = "SELECT id, photo, firstname, lastname, title, resume, skills, hobbies,
+        MATCH (firstname, lastname, title, resume, skills, hobbies) AGAINST (:query IN BOOLEAN MODE) AS pertinency
+        FROM user_profile
+        WHERE MATCH (firstname, lastname, title, resume, skills, hobbies) AGAINST (:query IN BOOLEAN MODE) > 0
+        ORDER BY pertinency DESC
+        ";
+
+        $stmt = $this->getEntityManager()->getConnection()->prepare($sql);
+        $stmt->execute(['query' => '*'.$query.'*']);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
-    */
+
 }

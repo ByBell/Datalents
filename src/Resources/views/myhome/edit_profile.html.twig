@@ -1,5 +1,6 @@
 {% extends 'baseHome.html.twig' %}
 
+{% block title %}Modifier le profil{% endblock %}
 {% block activepofile %} active {% endblock %}
 
 {% block body %}
@@ -8,7 +9,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="photo col-md-4" style="display:flex; justify-content:center">
-                    <img src="{{ profile.photo }}" class="rounded-circle img-raised" style="width:250px; height:250px;">
+                    <img src="{{ profile.photo }}" class="rounded-circle img-raised" style="width:220px; height:220px;">
                     {{ form_widget(form.photo, {'attr': {'class': 'form-control'}}) }}
                 </div>
 
