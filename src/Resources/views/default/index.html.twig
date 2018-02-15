@@ -1,10 +1,113 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="/css/landing_page.css">
+{% endblock %}
+
 {% block body %}
-    <h1>Yea !! Bienvenue Datalents - Accueil !</h1>
-    <hr>
-    <a class="btn btn-primary" href="{{ path('login') }}">Connexion</a>
-    <a class="btn btn-danger" href="{{ path('register') }}">Inscription</a>
+    <header>
+        <ul>
+            <li>DATALENTS</li>
+            <li>TÉMOIGNAGES</li>
+            <li>NOTRE CONCEPT</li>
+            <li>CONTACT</li>
+        </ul>
+<hr>
+        <hero>
+            <img src="/img/logo_hero.png" alt="">
+            <h1>Trouvez les talents dont vous avez besoin</h1>
+        </hero>
+
+    </header>
+
+    <main>
+        <div class="split-hero">
+            <section>
+                <button>Inscription</button>
+                <button>Connexion</button>
+            </section>
+    
+            <section>
+                <p>"L'innovation, c'est une situation qu'on choisit parce qu'on a une passion brûlante pour quelquechose."</p>
+                <p>Steve Jobs</p>
+            </section>
+
+        </div>
+
+        <section>
+            <h2>Une vaste communauté de gens qui vous ressemblent</h2>
+            <p>Grâce à notre plateforme, trouvez ceyx qui vous ressemblent. Que vous recherchiez un compagnon de travail ou juste une personne pour partager des activités, ne cherchez plus, l'aventure commmence ici !</p>
+        </section>
+
+        <section>
+            <article>
+                <img src="" alt="">
+                <p>"Grâce à Hetic j'ai découvert une certaine passion pour l'analyse des données que nous pouvons récolter sur un site internet."</p>
+                <p>Jean Godfroy</p>
+                <p>Étudiant en Master Data</p>
+            </article>
+            <article>
+                <img src="" alt="">
+                <p>"La PMD m'a permise d'apprendre énormément de choses. Aujourd'hui il me manque des compétences, j'aimerais trouver quelqu'un qui puisse m'aider en design."</p>
+                <p>Florent Faryli</p>
+                <p>Étudiant en Prépa Master Digital</p>
+            </article>
+            <article>
+                <img src="" alt="">
+                <p>"Pour la fin de ma formation, je dois réaliser une plateforme web. Je cherche un étudiant pouvant m'aider à la réaliser car je n'ai pas assez de compétence en développement."</p>
+                <p>Katia</p>
+                <p>Étudiant en MBA</p>
+            </article>
+        </section>
+
+        <section>
+            <div>
+                <h2>Une expérience inégalée</h2>
+                <p>Nous avons conçu un algorithme intelligent qui analyse l'ensemble des profils pour toujours vous proposer les meilleurs personnes pour vos projets. Notre algorithme apprend de vous pour vous offrir une expérience toujours plus précise et satisfaisante.</p>
+                <button>Découvrir la plateforme</button>
+            </div>
+            <img src="" alt="">
+        </section>
+
+        <section>
+            <div>
+                <h2>Votre expérience mise en avant</h2>
+                <p>Dans votre profil personnalisé, votre expérience est mise en avant pour une valorisation de votre travail auprès des autres utilisateurs. N'hésitez pas à mettre en avant vos réalisations ainsi que vos compétences, vous serez d'autant plus reconnu.</p>
+                <button>Je crée mon profil</button>
+            </div>
+            <img src="" alt="">
+        </section>
+
+    </main>
+
+    <footer>
+        <section>
+            <form action="">
+                <fieldset>
+                    <legend>Contactez-nous</legend>
+                    <div>
+                        Votre nom : <input type="text">
+                    </div>
+
+                    <div>
+                        Votre mail : <input type="mail">
+                    </div>
+
+                    <div>
+                        Votre message : <input type="text">
+                    </div>
+                <input type="submit" value="valider">
+                </fieldset>
+            </form>
+        </section>
+        <section>
+            <p>Copyright © Datalents 2018</p>
+        </section>
+    </footer>
+    
 
 
 {% endblock %}
+
+{# <a class="btn btn-primary" href="{{ path('login') }}">Connexion</a>
+<a class="btn btn-danger" href="{{ path('register') }}">Inscription</a> #}

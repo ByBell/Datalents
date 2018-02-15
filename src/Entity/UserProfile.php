@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserProfileRepository")
@@ -62,6 +63,7 @@ class UserProfile
     private $hobbies;
 
     /**
+     *
      * @ORM\ManyToMany(targetEntity="App\Entity\Project")
      * @ORM\JoinTable(name="users_projects",
      *     joinColumns={
@@ -70,6 +72,7 @@ class UserProfile
      *     inverseJoinColumns={
      *          @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      *     })
+
      */
     private $projects;
 
@@ -203,20 +206,24 @@ class UserProfile
         }
     }
 
-    /**
-     * @return mixed
-     */
+    public function addProject(Project $project)
+    {
+        $this->projects[] = $project;
+        return $this;
+    }
+    public function __construct()
+    {
+        $this->projects = new ArrayCollection();
+        // ...
+    }
+    public function removeProject(Project $project)
+    {
+        $this->projects->removeElement($project);
+    }
+
     public function getProjects()
     {
         return $this->projects;
-    }
-
-    /**
-     * @param mixed $projects
-     */
-    public function setProjects($projects)
-    {
-        $this->projects = $projects;
     }
 
     /**
