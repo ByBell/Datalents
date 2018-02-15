@@ -64,6 +64,11 @@ class UserProfile
     private $title;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $location;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $resume;
@@ -175,6 +180,22 @@ class UserProfile
     /**
      * @return mixed
      */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * @param mixed $location
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getResume()
     {
         return $this->resume;
@@ -201,7 +222,9 @@ class UserProfile
      */
     public function setPhoto($photo)
     {
-        $this->photo = $photo;
+        if(!empty($photo)){
+            $this->photo = $photo;
+        }
     }
 
     public function addProject(Project $project)
@@ -261,6 +284,5 @@ class UserProfile
     {
         return $this->getFirstname().' '.$this->getLastname();
     }
-
 
 }

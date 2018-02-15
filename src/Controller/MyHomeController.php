@@ -15,6 +15,7 @@ use App\Form\AddProjectType;
 use App\Form\Add2ProjectType;
 use App\Entity\Project;
 use App\Form\PersonalityTestType;
+use App\Form\ProfileType;
 use App\Services\PersonalityBrain;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -50,10 +51,36 @@ class MyHomeController extends Controller
     }
 
     /**
-     * @Route("/home/account", name="account")
+     * @Route("/home/edit_profile", name="edit_profile")
+     * @param Request $request
+     * @param UserInterface $user
+     * @return Response
      */
+    public function editProfileAction(Request $request, UserInterface $user){
+        $userProfile = $user->getProfile();
+        $form = $this->createForm(ProfileType::class, $userProfile, [
+            'method' => 'PATCH'
+        ]);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($userProfile);
+            $em->flush();
+        }
+
+        return $this->render('myhome/edit_profile.html.twig', ['form' => $form->createView(), 'profile' => $userProfile]);
+    }
+
+    /**
+     * @Route("/home/edit_account", name="edit_account")
+     */
+<<<<<<< HEAD
     public function accountAction(Request $request, UserInterface $user)
     {
+=======
+    public function editAccountAction(Request $request, UserInterface $user){
+>>>>>>> 520059180e2e414351b080b1a7def0ec8bdf0320
         $form = $this->createForm(EditUserType::class, $user, [
             'method' => 'PATCH'
         ]);

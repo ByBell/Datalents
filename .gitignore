@@ -7,6 +7,8 @@
 !var/logs/.gitkeep
 !var/sessions/.gitkeep
 .DS_Store
+.web-server-pid
+symfony.lock
 # Managed by Composer
 /vendor
 /bin/*
