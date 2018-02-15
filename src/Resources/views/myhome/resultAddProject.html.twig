@@ -1,0 +1,154 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Ajoutez un projet</div>
+                    <div class="panel-body">
+                        <h2>{{ project.name }}</h2>
+                        <h4>{{ project.description }}</h4>
+                        {{ form_start(form) }}
+                        {% if project.equipes == 1 %}
+                            <div class="form_group">
+                                <div class="col-md-8 col-md-offset-2" >
+
+                                    {{ form_label(form.emailpersonne1, 'Talent 1',{'attr': {'class': 'form-control'}}) }}
+                                    {{ project.personne1 }}
+                                    {{ form_widget(form.emailpersonne1, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form_group">
+                                <div class="col-md-8 col-md-offset-2" style="display: none">
+                                    {{ project.personne2 }}
+                                    {{ form_label(form.emailpersonne2, 'Talent 2',{'attr': {'class': 'form-control'}}) }}
+                                    {{ form_widget(form.emailpersonne2, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form_group">
+                                <div class="col-md-8 col-md-offset-2" style="display: none">
+                                    {{ form_label(form.emailpersonne3, 'Talent 3',{'attr': {'class': 'form-control'}}) }}
+                                    {{ form_widget(form.emailpersonne3, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form_group">
+                                <div class="col-md-8 col-md-offset-2" style="display: none">
+                                    {{ form_label(form.emailpersonne4, 'Talent 4',{'attr': {'class': 'form-control'}}) }}
+                                    {{ form_widget(form.emailpersonne4, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if project.equipes == 2 %}
+                            <div class="form_group">
+                                <div class="col-md-8 col-md-offset-2">
+
+                                    {{ form_label(form.emailpersonne1, 'Talent 1',{'attr': {'class': 'form-control'}}) }}
+                                    {{ project.personne1 }}
+                                    {{ form_widget(form.emailpersonne1, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form_group">
+                                <div class="col-md-8 col-md-offset-2">
+
+                                    {{ form_label(form.emailpersonne2, 'Talent 2',{'attr': {'class': 'form-control'}}) }}
+                                    {{ project.personne2 }}
+                                    {{ form_widget(form.emailpersonne2, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form_group">
+                                <div class="col-md-8 col-md-offset-2" style="display: none">
+                                    {{ form_label(form.emailpersonne3, 'Talent 3',{'attr': {'class': 'form-control'}}) }}
+                                    {{ form_widget(form.emailpersonne3, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form_group">
+                                <div class="col-md-8 col-md-offset-2" style="display: none">
+                                    {{ form_label(form.emailpersonne4, 'Talent 4',{'attr': {'class': 'form-control'}}) }}
+                                    {{ form_widget(form.emailpersonne4, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if project.equipes == 3 %}
+                            <div class="form_group">
+                                <div class="col-md-8 col-md-offset-2">
+                                    {{ form_label(form.emailpersonne1, 'Talent 1',{'attr': {'class': 'form-control'}}) }}
+                                    {{ project.personne1 }}
+                                    {{ form_widget(form.emailpersonne1, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form_group">
+                                <div class="col-md-8 col-md-offset-2">
+
+                                    {{ form_label(form.emailpersonne2, 'Talent 2',{'attr': {'class': 'form-control'}}) }}
+                                    {{ project.personne2 }}
+                                    {{ form_widget(form.emailpersonne2, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form_group">
+                                <div class="col-md-8 col-md-offset-2">
+
+                                    {{ form_label(form.emailpersonne3, 'Talent 3',{'attr': {'class': 'form-control'}}) }}
+                                    {{ project.personne3 }}
+                                    {{ form_widget(form.emailpersonne3, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form_group">
+                                <div class="col-md-8 col-md-offset-2" style="display: none">
+
+                                    {{ form_label(form.emailpersonne4, 'Talent 4',{'attr': {'class': 'form-control'}}) }}
+                                    {{ project.personne4 }}
+                                    {{ form_widget(form.emailpersonne4, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if project.equipes == 4 %}
+                            <div class="form_group">
+                                <div class="col-md-8 col-md-offset-2">
+
+                                    {{ form_label(form.emailpersonne1, 'Talent 1',{'attr': {'class': 'form-control'}}) }}
+                                    {{ project.personne1 }}
+                                    {{ form_widget(form.emailpersonne1, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form_group">
+                                <div class="col-md-8 col-md-offset-2">
+
+                                    {{ form_label(form.emailpersonne2, 'Talent 2',{'attr': {'class': 'form-control'}}) }}
+                                    {{ project.personne2 }}
+                                    {{ form_widget(form.emailpersonne2, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form_group">
+                                <div class="col-md-8 col-md-offset-2">
+
+                                    {{ form_label(form.emailpersonne3, 'Talent 3',{'attr': {'class': 'form-control'}}) }}
+                                    {{ project.personne3 }}
+                                    {{ form_widget(form.emailpersonne3, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form_group">
+                                <div class="col-md-8 col-md-offset-2">
+
+                                    {{ form_label(form.emailpersonne4, 'Talent 4',{'attr': {'class': 'form-control'}}) }}
+                                    {{ project.personne4 }}
+                                    {{ form_widget(form.emailpersonne4, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+
+
+                        {% endif %}
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-4" style="margin-top:5px;">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-btn fa-user"></i> Lancer mon projet
+                                </button>
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -9,15 +9,20 @@
 namespace App\Controller;
 
 use App\Form\EditUserType;
+use App\Form\ResultAddProjectType;
 use App\Entity\PersonalityTest;
-use App\Entity\User;
+use App\Form\AddProjectType;
+use App\Form\Add2ProjectType;
+use App\Entity\Project;
 use App\Form\PersonalityTestType;
 use App\Services\PersonalityBrain;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class MyHomeController extends Controller
 {
@@ -60,6 +65,7 @@ class MyHomeController extends Controller
             }
 
             $em = $this->getDoctrine()->getManager();
+
             $em->persist($user);
             $em->flush();
 
@@ -105,5 +111,73 @@ class MyHomeController extends Controller
 
     }
 
+    /**
+     * @Route("/home/project/add", name="add-project")
+     */
+    public function addprojectAction(Request $request, SessionInterface $session, UserInterface $user){
 
+        $project = new Project();
+        $form = $this->createForm(AddProjectType::class,$project);
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $profile = $user->getProfile();
+            $profile->addProject($project);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($project);
+            $em->flush();
+            $session->set('project_id', $project->getId());
+
+            return $this->redirectToRoute('add2-project');
+        }
+
+
+        return $this->render('myhome/addProject.html.twig', ['form' => $form->createView()]);
+    }
+
+    /**
+     * @Route("/home/project/add/2}", name="add2-project")
+     */
+    public function add2projectAction(Request $request, SessionInterface $session, UserInterface $user){
+        $project_id = $session->get('project_id');
+        $em = $this->getDoctrine()->getManager();
+        $project = $em->getRepository('App:Project')->findOneBy(['id' => $project_id]);
+        $form2 = $this->createForm(Add2ProjectType::class,$project);
+        $form2->handleRequest($request);
+
+        if (  $form2->isSubmitted() && $form2->isValid()){
+            $em->persist($project);
+            $em->flush();
+
+
+        return $this->redirectToRoute('result-add-project');
+
+    }
+        return $this-> render('myhome/add2Project.html.twig', ['form' => $form2->createView(),'project'=>$project]);
+    }
+
+
+    /**
+     * @Route("/home/project/add/result", name="result-add-project")
+     */
+    public function resultaddprojectAction(Request $request,SessionInterface $session){
+        $project_id = $session->get('project_id');
+        $em = $this->getDoctrine()->getManager();
+        $project = $em->getRepository('App:Project')->findOneBy(['id' => $project_id]);
+        $form = $this->createForm(ResultAddProjectType::class,$project);
+        $form->handleRequest($request);
+
+        if (  $form->isSubmitted() && $form->isValid()){
+            $em->persist($project);
+            $em->flush();
+
+
+            return $this->redirectToRoute('result-add-project');
+
+        }
+
+        return $this-> render('myhome/resultAddProject.html.twig', ['form' => $form->createView(),'project'=>$project]);
+    }
 }
