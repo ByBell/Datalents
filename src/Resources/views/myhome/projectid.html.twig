@@ -1,0 +1,117 @@
+{% extends 'baseHome.html.twig' %}
+{% block activecalendrier %} class="active"{% endblock %}
+{% block body %}
+<div class="panel-header panel-header-lg" style="background-image:linear-gradient(135deg, #0500a3 0%,#d80003 100%)">
+
+    <div class="container-fluid bouton-dashboard">
+
+
+    <h2 style="color:white">Projets: {projects.name}</h2>
+
+
+    </div>
+
+
+
+
+
+
+</div>
+
+
+<div class="content">
+
+
+    <!-- <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple" data-toggle="dropdown">
+7 days
+</button> -->
+
+
+
+
+    <div class="row" style="margin: 6em 0;">
+            <div class="col-md-8">
+                    <div class="card ">
+                        <div class="card-header">
+                            <h5 class="card-category">Projet en cours</h5>
+                            <h2 class="card-title text-center ">{{ project.name }}</h2>
+
+
+                        
+                        </div>
+                        <div class="card-body row">
+                        <div class="col-md-12" style="display:flex; justify-content:center">
+                            <h3>{{ project.description }}</h3>
+                            <a href="{{  path('view-project',{'id': project.id} )}}"></a>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card ">
+                    <div class="card-header">
+                        <h5 class="card-category">Projet en cours</h5>
+                        <h2 class="card-title text-center ">{{ project.name }}</h2>
+
+
+
+                    </div>
+                    <div class="card-body row">
+                        <div class="col-md-12" style="display:flex; justify-content:center">
+                            <h3>{{ project.description }}</h3>
+                            <a href="{{  path('view-project',{'id': project.id} )}}"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card ">
+                    <div class="card-header">
+                        <h5 class="card-category">Talents recherchés</h5>
+                    </div>
+                    <div class="card-body row">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                {% if project.equipes > 1 %}
+                                    {% if project.emailpersonne1 != null %}
+                                        <tr>
+                                            <td class="text-right" style="color: darkgray">
+                                                {{ project.personne1 }}
+                                            </td>
+                                            
+                                            <td class="text-right" style="color: darkgray">
+                                                <i class="fas fa-check"></i>
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td class="text-right">
+                                                {{ project.personne1 }}
+                                            </td>
+
+                                            <td class="text-right" style="color: darkgray">
+                                                <i class="fas fa-check"></i>
+                                            </td>
+                                        </tr>
+                                    {% endif %}    
+                                {% endif %}    
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+
+
+
+
+
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -224,7 +224,7 @@ class MyHomeController extends Controller
         }
         $i=$i+1;
         }
-        return $this->render('myhome/project.html.twig', ['projects' => $projects,'personne1'=>$personne1,'personne2'=>$personne2,'personne3'=>$personne3,'personne4'=>$personne4]);
+        return $this->render('myhome/myproject.html.twig', ['projects' => $projects,'personne1'=>$personne1,'personne2'=>$personne2,'personne3'=>$personne3,'personne4'=>$personne4]);
     }
 
     /**
@@ -249,6 +249,28 @@ class MyHomeController extends Controller
         $em->persist($project);
         $em->flush();
         return $this->redirectToRoute('project', ['id' => $id]);
+    }
+
+    /**
+     * @Route("/home/project/all", name="project")
+     */
+    public function projectAction(Request $request, SessionInterface $session, UserInterface $user)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $projects = $em->getRepository('App:Project')->findAll();
+
+        return $this->render('myhome/project.html.twig', ['projects' => $projects]);
+    }
+
+    /**
+     * @Route("/home/project/{id}", name="view-project")
+     */
+    public function viewprojectAction($id, Request $request, SessionInterface $session, UserInterface $user)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $projects = $em->getRepository('App:Project')->find($id);
+
+        return $this->render('myhome/projectid.html.twig', ['projects' => $projects]);
     }
 
 }
