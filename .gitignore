@@ -7,6 +7,7 @@
 !var/logs/.gitkeep
 !var/sessions/.gitkeep
 .DS_Store
+.web-server-pid
 # Managed by Composer
 /vendor
 /bin/*
