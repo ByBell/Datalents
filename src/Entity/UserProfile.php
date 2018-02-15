@@ -27,7 +27,28 @@ class UserProfile
     /**
      * @ORM\Column(type="string", nullable=true)
      */
+    private $personality;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
     private $firstname;
+
+    /**
+     * @return mixed
+     */
+    public function getPersonality()
+    {
+        return $this->personality;
+    }
+
+    /**
+     * @param mixed $personality
+     */
+    public function setPersonality($personality)
+    {
+        $this->personality = $personality;
+    }
 
     /**
      * @ORM\Column(type="string", nullable=true)

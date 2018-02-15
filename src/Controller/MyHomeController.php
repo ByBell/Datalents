@@ -33,9 +33,9 @@ class MyHomeController extends Controller
      */
     public function homeAction(UserInterface $user)
     {
-        $id = $user ->getUsername();
+        $id = $user->getUsername();
         $em = $this->getDoctrine()->getManager();
-       //Ici je vais chercher ma base de donnée UsersProfil avec l'email comme id.
+        //Ici je vais chercher ma base de donnée UsersProfil avec l'email comme id.
 
 
         return $this->render('myhome/home.html.twig', ['email' => $id]);
@@ -44,7 +44,9 @@ class MyHomeController extends Controller
     /**
      * @Route("/home/profile", name="profile")
      */
-    public function profileAction(){
+    public function profileAction()
+    {
+
         return $this->render('myhome/profile.html.twig');
     }
 
@@ -72,8 +74,10 @@ class MyHomeController extends Controller
 
     /**
      * @Route("/home/edit_account", name="edit_account")
+
      */
     public function editAccountAction(Request $request, UserInterface $user){
+
         $form = $this->createForm(EditUserType::class, $user, [
             'method' => 'PATCH'
         ]);
@@ -81,7 +85,7 @@ class MyHomeController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Encode the new users password if changed
-            if(null !== $password = $user->getPlainPassword()){
+            if (null !== $password = $user->getPlainPassword()) {
                 $encoder = $this->get('security.password_encoder');
                 $password = $encoder->encodePassword($user, $password);
                 $user->setPassword($password);
@@ -103,29 +107,30 @@ class MyHomeController extends Controller
      * @return Response
      * @Route("/home/test", name="test")
      */
-    public function testAction(Request $request, UserInterface $user, PersonalityBrain $personalityBrain){
+    public function testAction(Request $request, UserInterface $user, PersonalityBrain $personalityBrain)
+    {
         $test = new PersonalityTest();
 
-        $form = $this->createForm(PersonalityTestType::class,$test);
+        $form = $this->createForm(PersonalityTestType::class, $test);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
 
-            $resultat = $test->getQuestion1().$test->getQuestion2().$test->getQuestion3().$test->getQuestion4();
+            $resultat = $test->getQuestion1() . $test->getQuestion2() . $test->getQuestion3() . $test->getQuestion4();
 
 
             $em = $this->getDoctrine()->getManager();
 
             $profile = $user->getProfile();
             $profile->setPersonality($resultat);
+
             $em->persist($profile);
             $em->flush();
 
-
             $personality = $personalityBrain->determinePersonality($resultat);
 
-            return $this->render('myhome/finish-test.html.twig', ['personality'=>$personality]);
+            return $this->render('myhome/finish-test.html.twig', ['personality' => $personality]);
 
 
         }
@@ -137,10 +142,11 @@ class MyHomeController extends Controller
     /**
      * @Route("/home/project/add", name="add-project")
      */
-    public function addprojectAction(Request $request, SessionInterface $session, UserInterface $user){
+    public function addprojectAction(Request $request, SessionInterface $session, UserInterface $user)
+    {
 
         $project = new Project();
-        $form = $this->createForm(AddProjectType::class,$project);
+        $form = $this->createForm(AddProjectType::class, $project);
         $form->handleRequest($request);
 
 
@@ -163,45 +169,86 @@ class MyHomeController extends Controller
     /**
      * @Route("/home/project/add/2}", name="add2-project")
      */
-    public function add2projectAction(Request $request, SessionInterface $session, UserInterface $user){
+    public function add2projectAction(Request $request, SessionInterface $session, UserInterface $user)
+    {
         $project_id = $session->get('project_id');
         $em = $this->getDoctrine()->getManager();
         $project = $em->getRepository('App:Project')->findOneBy(['id' => $project_id]);
-        $form2 = $this->createForm(Add2ProjectType::class,$project);
+        $form2 = $this->createForm(Add2ProjectType::class, $project);
         $form2->handleRequest($request);
 
-        if (  $form2->isSubmitted() && $form2->isValid()){
+        if ($form2->isSubmitted() && $form2->isValid()) {
             $em->persist($project);
             $em->flush();
 
 
-        return $this->redirectToRoute('result-add-project');
-
-    }
-        return $this-> render('myhome/add2Project.html.twig', ['form' => $form2->createView(),'project'=>$project]);
-    }
-
-
-    /**
-     * @Route("/home/project/add/result", name="result-add-project")
-     */
-    public function resultaddprojectAction(Request $request,SessionInterface $session){
-        $project_id = $session->get('project_id');
-        $em = $this->getDoctrine()->getManager();
-        $project = $em->getRepository('App:Project')->findOneBy(['id' => $project_id]);
-        $form = $this->createForm(ResultAddProjectType::class,$project);
-        $form->handleRequest($request);
-
-        if (  $form->isSubmitted() && $form->isValid()){
-            $em->persist($project);
-            $em->flush();
-
-
-            return $this->redirectToRoute('result-add-project');
+            return $this->redirectToRoute('myproject');
 
         }
+        return $this->render('myhome/add2Project.html.twig', ['form' => $form2->createView(), 'project' => $project]);
+    }
 
-        return $this-> render('myhome/resultAddProject.html.twig', ['form' => $form->createView(),'project'=>$project]);
+    /**
+     * @Route("/home/project", name="myproject")
+     */
+    public function myprojectAction(Request $request, SessionInterface $session, UserInterface $user)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $projects = $user->getProfile()->getProjects();
+        if ($projects[0] == null){
+            return $this->redirectToRoute('add-project');
+        }
+        $i=1;
+        foreach ($projects as $project){
+
+
+        if ($project->getEmailPersonne1() != null) {
+            $personne1[$i] = $em->getRepository('App:User')->findOneBy(['email' => $project->getEmailPersonne1()])->getProfile();
+        } else {
+            $personne1[$i] = null;
+        }
+        if ($project->getEmailPersonne2() != null) {
+            $personne2[$i] = $em->getRepository('App:User')->findOneBy(['email' => $project->getEmailPersonne2()])->getProfile();
+        } else {
+            $personne2[$i] = null;
+        }
+        if ($project->getEmailPersonne3() != null) {
+            $personne3[$i] = $em->getRepository('App:User')->findOneBy(['email' => $project->getEmailPersonne3()])->getProfile();
+        } else {
+            $personne3[$i] = null;
+        }
+        if ($project->getEmailPersonne4() != null) {
+            $personne3[$i] = $em->getRepository('App:User')->findOneBy(['email' => $project->getEmailPersonne4()])->getProfile();
+        } else {
+            $personne4[$i] = null;
+        }
+        $i=$i+1;
+        }
+        return $this->render('myhome/project.html.twig', ['projects' => $projects,'personne1'=>$personne1,'personne2'=>$personne2,'personne3'=>$personne3,'personne4'=>$personne4]);
+    }
+
+    /**
+     * @Route("/project/{id}/{personne}", name="edit-project")
+     */
+    public function editProjectAction($id, $personne, Request $request, SessionInterface $session, UserInterface $user)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $project = $em->getRepository('App:Project')->findOneBy(['id' => $id]);
+
+        if ($personne == 'personne1') {
+            $project->setEmailPersonne1($user->getEmail());
+        } elseif ($personne == 'personne2') {
+            $project->setEmailPersonne2($user->getEmail());
+        } elseif ($personne == 'personne3') {
+            $project->setEmailPersonne3($user->getEmail());
+        } elseif ($personne == 'personne4') {
+            $project->setEmailPersonne4($user->getEmail());
+        }
+
+        $em->persist($project);
+        $em->flush();
+        return $this->redirectToRoute('project', ['id' => $id]);
     }
 
     /**
