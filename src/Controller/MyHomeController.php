@@ -74,13 +74,10 @@ class MyHomeController extends Controller
 
     /**
      * @Route("/home/edit_account", name="edit_account")
+
      */
-<<<<<<< HEAD
-    public function accountAction(Request $request, UserInterface $user)
-    {
-=======
     public function editAccountAction(Request $request, UserInterface $user){
->>>>>>> 520059180e2e414351b080b1a7def0ec8bdf0320
+
         $form = $this->createForm(EditUserType::class, $user, [
             'method' => 'PATCH'
         ]);
@@ -198,7 +195,9 @@ class MyHomeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $projects = $user->getProfile()->getProjects();
-
+        if ($projects[0] == null){
+            return $this->redirectToRoute('add-project');
+        }
         $i=1;
         foreach ($projects as $project){
 
