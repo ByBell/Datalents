@@ -51,6 +51,21 @@ input.form-control{
     z-index: 1;
 }
 
+.profile-location::before{
+    content: "\f041";
+    font-family: FontAwesome;
+    margin-right: 5px;
+}
+
+.profile-personality{
+    font-weight: bold;
+}
+
+.profile-personalitylist{
+    list-style-type: none;
+    padding: 0;
+}
+
 .profile-card .profile-fullname{
     margin: 0;
 }
@@ -61,6 +76,14 @@ input.form-control{
 
 .profile-card .profile-description{
     text-align: left;
+}
+
+.content.profile-container{
+    margin-top: -280px;
+}
+
+.profile-container .profile-result{
+    margin: 0 auto;
 }
 
 /**

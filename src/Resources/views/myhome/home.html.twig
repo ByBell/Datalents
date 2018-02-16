@@ -113,7 +113,7 @@
                             
                         </div>
                         <div class="card-body col-md-12" style="display:flex; justify-content:center">
-                                <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('profile') }}">Voir mon profil</a>
+                                <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('profile', {'id': app.user.profile.id}) }}">Voir mon profil</a>
                         </div>
                     </div>
             </div>

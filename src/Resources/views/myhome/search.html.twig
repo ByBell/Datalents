@@ -33,7 +33,7 @@
                                 <p class="profile-description">
                                     {{ profile.resume }}
                                 </p>
-                                <a href="#" class="btn btn-primary">Voir le profil</a>
+                                <a href="{{ path('profile', {'id': profile.id}) }}" class="btn btn-primary">Voir le profil</a>
                             </div>
                         </div>
                     </div>

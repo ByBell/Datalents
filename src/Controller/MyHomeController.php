@@ -21,6 +21,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -331,12 +332,32 @@ class MyHomeController extends Controller
     }
 
     /**
-     * @Route("/home/all", name="search")
+     * @Route("/home/all", name="profiles")
      */
     public function allProfilesAction(Request $request){
         $em = $this->getDoctrine()->getManager();
         $results = $em->getRepository('App:UserProfile')->findAll();
 
         return $this->render('myhome/all_profiles.html.twig', ['results' => $results]);
+    }
+
+
+    /**
+     * @Route("/home/profile/{id}", name="profile")
+     */
+    public function getProfileAction($id, Request $request, PersonalityBrain $personalityBrain){
+        $em = $this->getDoctrine()->getManager();
+        $profile = $em->getRepository('App:UserProfile')->find($id);
+
+        if(empty($profile)){
+            throw new NotFoundHttpException("Profil inexistant");
+        }
+
+        $personality = null;
+        if(!empty($profile->getPersonality())) {
+            $personality = $personalityBrain->determinePersonality($profile->getPersonality());
+        }
+
+        return $this->render('myhome/profile.html.twig', ['profile' => $profile, 'personality' => $personality]);
     }
 }
