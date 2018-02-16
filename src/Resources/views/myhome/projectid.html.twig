@@ -104,7 +104,7 @@
                             <h2 class="card-title">{{ project.personne1 }}</h2>
 
                         </div>
-    {% if project.getCreatorId == true %}
+    {% if project.getCreatorId == true and project.personne1!= null %}
         <div class="card-body col-md-12" style="display:flex; justify-content:center">
             <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('add-talent-project', {'id' : project.id,'personne' : 'personne1'}) }}">Inviter un talent</a>
         </div>
@@ -145,11 +145,8 @@
                                 <h2 class="card-title">{{ project.personne2 }}</h2>
 
                             </div>
-                    {% if project.getCreatorId == true %}
-                        <div class="card-body col-md-12" style="display:flex; justify-content:center">
-                            <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('add-talent-project', {'id' : project.id,'personne' : 'personne2'}) }}">Inviter un talent</a>
-                        </div>
-                            {% elseif personne2 != null %}
+
+                            {% if personne2 != null %}
                                 <div class="col-md-12">
                                     <h5>Ce poste est pris par: {{ personne2.lastname }} {{ personne2.firstname }}</h5>
                                 </div>
@@ -161,6 +158,10 @@
                                 <div class="col-md-12 text-center" style="padding: 1em 0">
                                     <a class="btn btn-primary btn-round " href="{{ path('profile',{'id': personne2.id}) }}">Voir le profile</a>
                                 </div>
+                                {% elseif project.getCreatorId == true %}
+                                    <div class="card-body col-md-12" style="display:flex; justify-content:center">
+                                        <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('add-talent-project', {'id' : project.id,'personne' : 'personne2'}) }}">Inviter un talent</a>
+                                    </div>
 
 
                             {% else %}
@@ -180,7 +181,7 @@
                                 <h2 class="card-title">{{ project.personne3 }}</h2>
 
                             </div>
-                    {% if project.getCreatorId == true %}
+                    {% if project.getCreatorId == true and project.personne3!= null %}
                         <div class="card-body col-md-12" style="display:flex; justify-content:center">
                             <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('add-talent-project', {'id' : project.id,'personne' : 'personne3'}) }}">Inviter un talent</a>
                         </div>
@@ -215,7 +216,7 @@
                                 <h2 class="card-title">{{ project.personne4 }}</h2>
 
                             </div>
-                            {% if project.getCreatorId == true %}
+                            {% if project.getCreatorId == true  and project.emailpersonne4!= null %}
                                 <div class="card-body col-md-12" style="display:flex; justify-content:center">
                                     <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('add-talent-project', {'id' : project.id,'personne' : 'personne4'}) }}">Inviter un talent</a>
                                 </div>
