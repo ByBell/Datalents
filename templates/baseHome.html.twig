@@ -79,7 +79,7 @@
                         <img src="{{ not app.user.profile.photo ? '/img/missing.png' : app.user.profile.photo }}">
                     </div>
                     <div class="info">
-                        <a href="{{ path('edit_profile') }}">
+                        <a href="{{ path('myprofile') }}">
                             <span>
                                 {% if app.user.profile.firstname is not empty %}
                                     {{ app.user.profile.firstname~" "~app.user.profile.lastname }}
@@ -108,10 +108,10 @@
                         </a>
                     </li>
 
-                    <li {% block activeformation %} {% endblock %}>
-                        <a href="">
+                    <li {% block activetalents %} {% endblock %}>
+                        <a href="{{ path('profiles') }}">
                             <i class="now-ui-icons education_atom"></i>
-                            <p>Mes Formations
+                            <p>Tout les talents
 
                             </p>
                         </a>
@@ -129,12 +129,6 @@
 
 
 
-                    <li {% block activetalents %} {% endblock %}>
-                        <a href="">
-                            <i class="now-ui-icons media-1_album"></i>
-                            <p>Les Talents</p>
-                        </a>
-                    </li>
 
                 </ul>
             </div>

@@ -37,21 +37,21 @@ class MyHomeController extends Controller
      */
     public function homeAction(UserInterface $user)
     {
-        $id = $user->getUsername();
-        $em = $this->getDoctrine()->getManager();
-        //Ici je vais chercher ma base de donnée UsersProfil avec l'email comme id.
+        $profile= $user->getProfile();
+        $projects = $profile->getProjects();
 
 
-        return $this->render('myhome/home.html.twig', ['email' => $id]);
+
+        return $this->render('myhome/home.html.twig', ['user' => $user,'profile'=>$profile,'projects'=>$projects]);
     }
 
     /**
-     * @Route("/home/profile", name="profile")
+     * @Route("/home/profile", name="myprofile")
      */
-    public function profileAction()
+    public function profileAction( UserInterface $user)
     {
-
-        return $this->render('myhome/profile.html.twig');
+    $id= $user->getProfile()->getId();
+        return $this->redirectToRoute('profile-id',['id'=>$id]);
     }
 
     /**
@@ -445,9 +445,10 @@ class MyHomeController extends Controller
     /**
      * @Route("/home/profile/{id}", name="profile")
      */
-    public function getProfileAction($id, Request $request, PersonalityBrain $personalityBrain){
+    public function getProfileAction($id, Request $request, PersonalityBrain $personalityBrain,UserInterface $user){
         $em = $this->getDoctrine()->getManager();
         $profile = $em->getRepository('App:UserProfile')->find($id);
+
 
         if(empty($profile)){
             throw new NotFoundHttpException("Profil inexistant");
