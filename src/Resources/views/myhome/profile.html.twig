@@ -19,7 +19,9 @@
                             <span class="profile-title">{{ profile.title }}</span><br>
                             <span class="profile-location">{{ profile.location }}</span>
                         </div>
-                        <a href="mailto:{{ profile.user.email }}" class="btn btn-primary">Envoyer un message</a>
+                        {% if profile.user.email is defined and profile.user.email is not empty %}
+                            <a href="mailto:{{ profile.user.email }}" class="btn btn-primary">Envoyer un message</a>
+                        {% endif %}
                         {% if profile.id == app.user.profile.id %}
                             <a href="{{ path('edit_profile') }}" class="btn btn-primary">Modifier mon profil</a>
                         {% endif %}
