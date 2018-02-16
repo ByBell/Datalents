@@ -12286,6 +12286,12 @@ img {
     min-height: 240px
 }
 
+.card-body .form-group:last-child {
+    margin-top: 3rem;
+    text-align: right;
+}
+}
+
 .card-user hr {
     margin: 5px 15px
 }
