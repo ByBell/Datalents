@@ -31,13 +31,13 @@
                         <label>Compétences</label>
                         <ul class="skills-list">
                             {% for skill in profile.skills %}
-                                <li class="tag">{{ skill }}</li>
+                                <li class="tag"><a href="/home/search?q={{ skill }}">{{ skill }}</a></li>
                             {% endfor %}
                         </ul>
                         <label>Activités favorites</label>
                         <ul class="hobbies-list">
                             {% for hobby in profile.hobbies %}
-                                <li class="tag">{{ hobby }}</li>
+                                <li class="tag"><a href="/home/search?q={{ hobby }}">{{ hobby }}</a></li>
                             {% endfor %}
                         </ul>
                         <hr>
