@@ -8,8 +8,10 @@
 
 namespace App\Controller;
 
+use App\Form\AddPersonnesType;
 use App\Form\EditUserType;
 use App\Form\ResultAddProjectType;
+use App\Entity\ProjectAdd;
 use App\Form\AddPhotoProjectType;
 use App\Entity\PersonalityTest;
 use App\Form\AddProjectType;
@@ -391,14 +393,42 @@ class MyHomeController extends Controller
     }
 
     /**
-     * @Route("/home/project/add/{id}/", name="add-talent-project")
+     * @Route("/home/project/add/{id}/{personne}", name="add-talent-project")
      */
-    public function addpersonneAction($id, Request $request)
+    public function addpersonneAction($id, $personne, Request $request)
     {
-        $query = $request->get('q');
-
         $em = $this->getDoctrine()->getManager();
-        $results = $em->getRepository('App:UserProfile')->search($query);
+        $project = $em->getRepository('App:Project')->find($id);
+        $addproject = new ProjectAdd();
+
+        $form = $this->createForm(AddPersonnesType::class, $addproject);
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $utilisateur =$em->getRepository('App:user')->findOneByEmail($addproject->getPersonne());
+            if ($utilisateur!= null)
+            {
+                if ($personne == 'personne1') {
+                    $project->setEmailPersonne1($addproject->getPersonne());
+                } elseif ($personne == 'personne2') {
+                    $project->setEmailPersonne2($addproject->getPersonne());
+                } elseif ($personne == 'personne3') {
+                    $project->setEmailPersonne3($addproject->getPersonne());
+                } elseif ($personne == 'personne4') {
+                    $project->setEmailPersonne4($addproject->getPersonne());
+                }
+
+            }
+            $utilisateur -> getProfile()->addProject($project);
+            $em->persist($project);
+            $em->flush();
+
+            return $this->redirectToRoute('view-project', ['id'=> $project->getId()]);
+        }
+
+
+        return $this->render('myhome/AddPersonnesProject.html.twig', ['form' => $form->createView(),'project'=>$project]);
     }
 
     /**
