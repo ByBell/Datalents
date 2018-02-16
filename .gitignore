@@ -23,3 +23,6 @@ symfony.lock
 
 # PHPStorm
 .idea/*
+
+# Uploads folder
+/public/uploads

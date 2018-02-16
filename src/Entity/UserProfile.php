@@ -21,6 +21,7 @@ class UserProfile
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="profile")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
@@ -126,7 +127,7 @@ class UserProfile
     /**
      * @param mixed $user
      */
-    public function setUser($user)
+    public function setUser(User $user)
     {
         $this->user = $user;
     }
