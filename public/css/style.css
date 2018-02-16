@@ -30,7 +30,6 @@ input.form-control{
  * Profile result
  */
 .profile-result{
-    padding-top: 20px;
     position: relative;
 }
 
@@ -135,6 +134,13 @@ ul.hobbies-list{
     margin: 0 5px 5px 5px;
 }
 
+.tags-list{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
 .content.content-no-card{
     margin-top: 0px;
+    padding-top: 30px;
 }

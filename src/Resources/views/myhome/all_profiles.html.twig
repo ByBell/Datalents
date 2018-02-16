@@ -27,7 +27,7 @@
                                 </div>
                                 <ul class="skills-list">
                                     {% for skill in profile.skills %}
-                                        <li class="tag">{{ skill }}</li>
+                                        <li class="tag"><a href="/home/search?q={{ skill }}">{{ skill }}</a></li>
                                     {% endfor %}
                                 </ul>
                                 <p class="profile-description">
@@ -40,6 +40,32 @@
                 {% else %}
                     <h3>Aucun profil correspondant à votre recherche.</h3>
                 {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-3 card card-raised">
+                <div class="card-body">
+                    <h5 class="card-category">Compétences recherchées</h5>
+                    <ul class="tags-list">
+                        <li class="tag"><a href="/home/search?q=marketing">marketing</a></li>
+                        <li class="tag"><a href="/home/search?q=motion">motion</a></li>
+                        <li class="tag"><a href="/home/search?q=php">php</a></li>
+                        <li class="tag"><a href="/home/search?q=js">js</a></li>
+                        <li class="tag"><a href="/home/search?q=html">php</a></li>
+                        <li class="tag"><a href="/home/search?q=css">css</a></li>
+                        <li class="tag"><a href="/home/search?q=adobe">adobe</a></li>
+                        <li class="tag"><a href="/home/search?q=Photoshop">Photoshop</a></li>
+                        <li class="tag"><a href="/home/search?q=Illustrator">Illustrator</a></li>
+                        <li class="tag"><a href="/home/search?q=After Effect">After Effect</a></li>
+                    </ul>
+                    <hr>
+                    <h5 class="card-category">Hobbies</h5>
+                    <ul class="tags-list">
+                        <li class="tag"><a href="/home/search?q=cinema">cinema</a></li>
+                        <li class="tag"><a href="/home/search?q=batteur">batteur</a></li>
+                        <li class="tag"><a href="/home/search?q=basket">basket</a></li>
+                        <li class="tag"><a href="/home/search?q=PSG">psg</a></li>
+                        <li class="tag"><a href="/home/search?q=Rocket League">Rocket League</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
