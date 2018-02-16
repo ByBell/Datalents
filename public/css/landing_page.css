@@ -80,22 +80,19 @@ header div.split-hero button {
     font-size: 120%;
     margin: 0 1rem;
     border: none;
+    color: white;
+    background: transparent;
+    border: 1px solid white;
 }
 header div.split-hero button a {
     padding: 1rem 2rem;
     display: inline-block;
 }
 header div.split-hero button:first-of-type {
-    color: white;
-    background: transparent;
+    background: white;
+    color: #64a09f;
     border: 1px solid white;
 }
-header div.split-hero button:last-of-type{
-    color: white;
-    background: transparent;
-    border: 1px solid white;
-}
-
 
 
 
