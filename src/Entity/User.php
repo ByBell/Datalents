@@ -200,6 +200,7 @@ class User implements UserInterface
      */
     public function setProfile(UserProfile $profile)
     {
+        $profile->setUser($this);
         $this->profile = $profile;
     }
 
