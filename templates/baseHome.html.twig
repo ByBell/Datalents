@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport">
-    <title>Datalents</title>
+    <title>{% block title %}Bienvenue{% endblock %} - Datalents</title>
 
 
 
@@ -145,12 +145,11 @@
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute bg-primary fixed-top">
                 <div class="container-fluid">
-
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
 
-                        <form>
+                        <form action="{{ path('search') }}" method="GET">
                             <div class="input-group no-border">
-                                <input type="text" value="" class="form-control" placeholder="Search...">
+                                <input type="text" name="q" class="form-control" placeholder="Search...">
                                 <span class="input-group-addon">
                                     <i class="now-ui-icons ui-1_zoom-bold"></i>
                                 </span>

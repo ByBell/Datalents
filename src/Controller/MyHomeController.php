@@ -318,4 +318,15 @@ class MyHomeController extends Controller
         return $this->render('myhome/projectid.html.twig', ['projects' => $projects]);
     }
 
+    /**
+     * @Route("/home/search", name="search")
+     */
+    public function searchAction(Request $request){
+        $query = $request->get('q');
+
+        $em = $this->getDoctrine()->getManager();
+        $results = $em->getRepository('App:UserProfile')->search($query);
+
+        return $this->render('myhome/search.html.twig', ['results' => $results, 'query' => $query]);
+    }
 }
