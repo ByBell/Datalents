@@ -5,7 +5,7 @@
 
 {% block body %}
 
-    <div class="panel-header panel-header-lg" style="background-image:url('{{ not project.photo ? '/img/profil_hero_bg.png' : project.photo }}')">
+    <div class="panel-header panel-header-lg" style="background-size:cover; background-image:url('{{ not project.photo ? '/img/profil_hero_bg.png' : project.photo }}')">
         <div class="container-fluid">
             <div class="row">
 
@@ -13,15 +13,13 @@
         </div>
     </div>
     {{ form_start(form) }}
-                <div class="card col-md-10 " style="display:flex; justify-content:center">
+                <div class="card col-md-12 " style="display:flex; justify-content:center">
 
 
                          <div class="col-md-12" style="display:flex; justify-content:center">
 
-                             <div class="col-md-12" >
-                                 {{ form_label(form.question2, 'Mettre L\'adresse Email du talents voulue',{'attr': {'class': 'form-control'}}) }}
-                             </div>
-                             <div class="col-md-2">
+
+                             <div class="col-md-12 text-center">
 
                              {{ form_widget(form.photo, {'attr': {'class': 'form-control'}}) }}
                                  <div class="form-group">

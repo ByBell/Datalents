@@ -1,7 +1,7 @@
 {% extends 'baseHome.html.twig' %}
 {% block activecalendrier %} class="active"{% endblock %}
 {% block body %}
-    <div class="panel-header panel-header-lg" style="background-image:url('{{ not project.photo ? '/img/baniere_dashboard.png' : project.photo }}')">
+    <div class="panel-header panel-header-lg" style="background-size:cover;background-image:url('{{ not project.photo ? '/img/baniere_dashboard.png' : project.photo }}')">
 
         <div class="container-fluid bouton-dashboard">
 

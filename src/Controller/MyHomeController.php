@@ -381,7 +381,7 @@ class MyHomeController extends Controller
             $em->flush();
             $session->set('project_id', $project->getId());
 
-            return $this->redirectToRoute('view-project', ['id'=> $project->getId()]);
+            return $this->redirectToRoute('view-project', ['id'=> $project->getId(),'project'=>$project]);
         }
 
 

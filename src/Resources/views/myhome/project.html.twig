@@ -34,7 +34,7 @@
                     <div class="row">
                         {% for project in projects %}
                             <div class="profile-result col-md-6">
-                                <img src="{{ not project.photo ? '/img/profil_hero_bg.png' : project.photo }}" alt="{{ project.name  }}" class="photo img-raised">
+                                <img style=" height:110px" src="{{ not project.photo ? '/img/profil_hero_bg.png' : project.photo }}" alt="{{ project.name  }}" class="photo img-raised col-md-12">
                                 <div class="profile-card card card-raised">
                                     <div class="card-body">
                                         <div class="profile-header">
