@@ -111,6 +111,7 @@ class AuthController extends Controller
             // Save
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
+            $em->persist($userProfile);
             $em->flush();
 
             return $this->render('auth/register_success.html.twig');
