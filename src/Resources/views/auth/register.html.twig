@@ -41,18 +41,18 @@
               </defs>
               <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
             </svg>
-            <form class="form" role="form" method="POST" name="user">
+              {{ form_start(form, {'attr': {'class': 'form', 'name': 'user'}}) }}
               <label for="email">Email</label>
-              <input type="email" id="email" name="user[email]" required="required">
+              {{ form_widget(form.email, {'id': 'email'}) }}
               
               <label for="password">Mot de passe</label>
-              <input type="password" id="password" name="user[plainPassword][first]" required="required">
+              {{ form_widget(form.plainPassword.first, {'id': 'password'}) }}
+
               <label for="password">Confirmer mot de passe</label>
-              <input type="password" id="password_sec" name="user[plainPassword][second]" required="required">
-              
-              <input type="hidden" id="user__token" name="user[_token]" value="uNPsTlubgN8ZT--WLtLcNC8CZ7HnphxIVonOXoluBL0">
+              {{ form_widget(form.plainPassword.second, {'id': 'password_sec'}) }}
+
               <input type="submit" class="minus-margin" id="submit" value="M'inscrire">
-            </form>
+              {{ form_end(form) }}
           </div>
         </div>
       </div>
