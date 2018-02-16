@@ -329,4 +329,14 @@ class MyHomeController extends Controller
 
         return $this->render('myhome/search.html.twig', ['results' => $results, 'query' => $query]);
     }
+
+    /**
+     * @Route("/home/all", name="search")
+     */
+    public function allProfilesAction(Request $request){
+        $em = $this->getDoctrine()->getManager();
+        $results = $em->getRepository('App:UserProfile')->findAll();
+
+        return $this->render('myhome/all_profiles.html.twig', ['results' => $results]);
+    }
 }

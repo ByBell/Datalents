@@ -1,0 +1,48 @@
+{% extends 'baseHome.html.twig' %}
+
+{% block title %}Tous les profils {% endblock %}
+
+{% block activepofile %} active {% endblock %}
+
+{% block body %}
+    <div class="panel-header" style="background-image:url(/img/profil_hero_bg.png)">
+        <div class="header text-center">
+            <h2 class="title">Tous les profils</h2>
+            <p class="category">{{ results|length }} résultats</p>
+        </div>
+    </div>
+
+    <div class="content content-no-card">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                {% for profile in results %}
+                    <div class="profile-result col-md-4">
+                        <img src="{{ not profile.photo ? '/img/missing.png' : profile.photo }}" alt="{{ profile.firstname~" "~profile.lastname }}" class="profile-photo img-raised">
+                        <div class="profile-card card card-raised">
+                            <div class="card-body">
+                                <div class="profile-header">
+                                    <h3 class="profile-fullname">{{ profile.firstname~" "~profile.lastname }}</h3>
+                                    <span class="profile-title">{{ profile.title }}</span>
+                                </div>
+                                <ul class="skills-list">
+                                    {% for skill in profile.skills %}
+                                        <li class="tag">{{ skill }}</li>
+                                    {% endfor %}
+                                </ul>
+                                <p class="profile-description">
+                                    {{ profile.resume }}
+                                </p>
+                                <a href="#" class="btn btn-primary">Voir le profil</a>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <h3>Aucun profil correspondant à votre recherche.</h3>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
