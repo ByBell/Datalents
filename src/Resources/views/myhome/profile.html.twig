@@ -1,34 +1,66 @@
 {% extends 'baseHome.html.twig' %}
 
+{% block title %}{{ profile.firstname~" "~profile.lastname }}{% endblock %}
+
 {% block activepofile %} active {% endblock %}
 
 {% block body %}
     <div class="panel-header panel-header-lg" style="background-image:url(/img/profil_hero_bg.png)">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="photo col-md-4" style="display:flex; justify-content:center">
-                    <img src="/james.jpg" class="rounded-circle img-raised" style="width:250px; height:250px;">
-                </div>
-
-                <div class="col-md-4< d-flex flex-column justify-content-end">
-                    <h2 style="color:white">Timothée Poincheval</h2>
-                    <h3 style="color:white">UX Design</h3>
-                    <h4 style="color:white">Talent: Idéaliste</h4>
-
-                </div>
-
-                <div class="row col-md-4 d-flex flex-column justify-content-end">
-                    <div class="row">
-                        <i style="color:white"class="fas fa-map-marker"></i>
-                        <p style="color:white">Montreuil</p>
-                    </div>
-                </div>
-
-
-
-            </div>
-        </div>
     </div>
 
+    <div class="content profile-container">
+        <div class="row">
+            <div class="profile-result col-md-8">
+                <img src="{{ not profile.photo ? '/img/missing.png' : profile.photo }}" alt="{{ profile.firstname~" "~profile.lastname }}" class="profile-photo img-raised">
+                <div class="profile-card card card-raised">
+                    <div class="card-body">
+                        <div class="profile-header">
+                            <h3 class="profile-fullname">{{ profile.firstname~" "~profile.lastname }}</h3>
+                            <span class="profile-title">{{ profile.title }}</span><br>
+                            <span class="profile-location">{{ profile.location }}</span>
+                        </div>
+                        <a href="mailto:{{ profile.user.email }}" class="btn btn-primary">Envoyer un message</a>
+                        {% if profile.id == app.user.profile.id %}
+                            <a href="{{ path('edit_profile') }}" class="btn btn-primary">Modifier mon profil</a>
+                        {% endif %}
+                        <hr>
+                        <p class="profile-description" style="text-align: center;">
+                            {{ profile.resume }}
+                        </p>
+                        <hr>
+                        <label>Compétences</label>
+                        <ul class="skills-list">
+                            {% for skill in profile.skills %}
+                                <li class="tag">{{ skill }}</li>
+                            {% endfor %}
+                        </ul>
+                        <label>Activités favorites</label>
+                        <ul class="hobbies-list">
+                            {% for hobby in profile.hobbies %}
+                                <li class="tag">{{ hobby }}</li>
+                            {% endfor %}
+                        </ul>
+                        <hr>
+                        <label>Personnalité</label>
+                        {% if personality is not empty %}
+                            <br>
+                            <span class="profile-personality">{{ personality[0] }}</span>
+                            <ul class="profile-personalitylist">
+                                {% for perso in personality|slice(1,4) %}
+                                    <li class="">{{ perso }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>{{ profile.firstname }} n'a pas réalisé le test de personnalité</p>
+                        {% endif %}
 
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 {% endblock %}
