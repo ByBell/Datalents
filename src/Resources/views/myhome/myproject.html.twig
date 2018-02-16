@@ -1,0 +1,144 @@
+{% extends 'baseHome.html.twig' %}
+{% block activeprojet %} class="active"{% endblock %}
+{% block body %}
+<div class="panel-header panel-header-lg" style="background-image:linear-gradient(135deg, #0500a3 0%,#d80003 100%)">
+
+    <div class="container-fluid bouton-dashboard">
+
+
+    <h2 style="color:white">Mes Projets</h2>
+
+
+    </div>
+
+
+
+
+
+
+</div>
+
+
+<div class="content">
+
+
+    <!-- <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple" data-toggle="dropdown">
+7 days
+</button> -->
+    {% for project in projects  %}
+    <div class="row" style="margin: 6em 0;">
+            <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header">
+                            <h5 class="card-category">Projet en cours</h5>
+                            <h2 class="card-title text-center ">{{ project.name }}</h2>
+
+
+                        
+                        </div>
+                        <div class="card-body row">
+                        <div class="col-md-12" style="display:flex; justify-content:center">
+                            <h3 class="text-center">{{ project.description }}</h3>
+                        </div>
+                            <div class="col-md-12" style="display:flex; justify-content:center">
+                                <a class="btn btn-round btn-primary" href="{{ path('view-project',{'id': project.id}) }}">Voir les détails</a>
+                            </div>
+                    </div>
+                    </div>
+            </div>
+
+
+
+
+            <div class="col-md-4">
+                <div class="card ">
+                    <div class="card-header">
+                        <h5 class="card-category">Talent 1</h5>
+                        <h2 class="card-title">{{ project.personne1 }}</h2>
+
+                    </div>
+                    {% if personne1[loop.index]!= null %}
+                        <h4>Ce poste est pris par: {{ personne1[loop.index].lastname }} {{ personne1[loop.index].firstname }}</h4>
+
+                    {% else %}
+
+                        <div class="card-body col-md-12" style="display:flex; justify-content:center">
+                            <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('edit-project', {'id' : project.id,'personne' : 'personne1'}) }}">Choisir ce Poste</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+
+
+        {% if project.equipes >1 %}
+
+
+
+
+            <div class="col-md-4">
+                    <div class="card ">
+                        <div class="card-header">
+                            <h5 class="card-category">Talent 2</h5>
+                            <h2 class="card-title">{{ project.personne2 }}</h2>
+
+                        </div>
+                        {% if personne2[loop.index] != null %}
+                            <h4>Ce poste est pris par: {{ personne2[loop.index].lastname }} {{ personne2[loop.index].firstname }}</h4>
+
+                        {% else %}
+
+                            <div class="card-body col-md-12" style="display:flex; justify-content:center">
+                                <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('edit-project', {'id' : project.id,'personne' : 'personne2'}) }}">Choisir ce Poste</a>
+                            </div>
+                        {% endif %}
+                    </div>
+            </div>
+        {% endif %}
+        {% if project.equipes >2 %}
+            <div class="col-md-4">
+                <div class="card ">
+                    <div class="card-header">
+                        <h5 class="card-category">Talent 3</h5>
+                        <h2 class="card-title">{{ project.personne3 }}</h2>
+
+                    </div>
+                    {% if personne3[loop.index] != null %}
+                         <h4>Ce poste est pris par: {{ personne3[loop.index].lastname }} {{ personne3[loop.index].firstname }}</h4>
+
+                    {% else %}
+
+                    <div class="card-body col-md-12" style="display:flex; justify-content:center">
+                        <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('edit-project', {'id' : project.id,'personne' : 'personne3'}) }}">Choisir ce Poste</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+        {% if project.equipes >3 %}
+            <div class="col-md-4">
+                <div class="card ">
+                    <div class="card-header">
+                        <h5 class="card-category">Talent 4</h5>
+                        <h2 class="card-title">{{ project.personne4 }}</h2>
+
+                    </div>
+                    {% if personne4[loop.index] != null %}
+                        <h4>Ce poste est pris par: {{ personne4[loop.index].lastname }} {{ personne4[loop.index].firstname }}</h4>
+
+                    {% else %}
+
+                        <div class="card-body col-md-12" style="display:flex; justify-content:center">
+                            <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('edit-project', {'id' : project.id,'personne' : 'personne4'}) }}">Choisir ce Poste</a>
+                        </div>
+                    {% endif %}
+
+                </div>
+            </div>
+
+        {% endif %}
+
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
