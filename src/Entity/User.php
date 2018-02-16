@@ -50,7 +50,7 @@ class User implements UserInterface
     protected $isVerified;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\UserProfile", inversedBy="user", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="App\Entity\UserProfile", inversedBy="user", cascade={"remove"})
      * @ORM\JoinColumn(name="profile_id", referencedColumnName="id")
      */
     protected $profile;

@@ -93,8 +93,10 @@ class MyHomeController extends Controller
      */
     public function profileAction( UserInterface $user)
     {
+
     $id= $user->getProfile()->getId();
         return $this->redirectToRoute('profile',['id'=>$id]);
+        
     }
 
     /**

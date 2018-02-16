@@ -26,3 +26,6 @@ symfony.lock
 
 # Uploads folder
 /public/uploads
+
+# .env configuration
+.env
