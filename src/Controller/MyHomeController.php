@@ -36,13 +36,56 @@ class MyHomeController extends Controller
      * @Route("/home", name="home")
      */
     public function homeAction(UserInterface $user)
-    {
+    {   $em = $em = $this->getDoctrine()->getManager();
         $profile= $user->getProfile();
         $projects = $profile->getProjects();
+        $project =$projects[0];
+        if ($project != null){
 
 
 
-        return $this->render('myhome/home.html.twig', ['user' => $user,'profile'=>$profile,'projects'=>$projects]);
+
+        if ($project->getEmailPersonne1() != null) {
+            $personne1 = $em->getRepository('App:User')->findOneBy(['email' => $project->getEmailPersonne1()])->getProfile();
+        } else {
+            $personne1 = null;
+        }
+        if ($project->getEmailPersonne2() != null) {
+            $personne2 = $em->getRepository('App:User')->findOneBy(['email' => $project->getEmailPersonne2()])->getProfile();
+        } else {
+            $personne2 = null;
+        }
+        if ($project->getEmailPersonne3() != null) {
+            $personne3 = $em->getRepository('App:User')->findOneBy(['email' => $project->getEmailPersonne3()])->getProfile();
+        } else {
+            $personne3 = null;
+        }
+        if ($project->getEmailPersonne4() != null) {
+            $personne4 = $em->getRepository('App:User')->findOneBy(['email' => $project->getEmailPersonne4()])->getProfile();
+        } else {
+            $personne4 = null;
+        }
+
+    }
+    else{
+            $project = null;
+            $personne1=null;
+        $personne2=null;
+        $personne3=null;
+        $personne4=null;
+    }
+        if ($em->getRepository('App:User')->find(1)->getProfile() != null)
+        {$profile1 = $em->getRepository('App:User')->find(1)->getProfile();}
+        else{$profile1==null;}
+        if ($em->getRepository('App:User')->find(2)->getProfile() != null)
+        {$profile2 = $em->getRepository('App:User')->find(2)->getProfile();}
+        else{$profile2==null;}
+        if ($em->getRepository('App:User')->find(3)->getProfile() != null)
+        {$profile3 = $em->getRepository('App:User')->find(3)->getProfile();}
+        else{$profile3==null;}
+
+
+        return $this->render('myhome/home.html.twig', ['user' => $user,'profile'=>$profile,'project'=>$project, 'personne1'=>$personne1, 'personne2'=>$personne2, 'personne3'=>$personne3, 'personne4'=>$personne4,'profile1'=>$profile1,'profile2'=>$profile2,'profile3'=>$profile3]);
     }
 
     /**
@@ -50,8 +93,10 @@ class MyHomeController extends Controller
      */
     public function profileAction( UserInterface $user)
     {
-        $id = $user->getProfile()->getId();
-        return $this->redirectToRoute('profile', ['id'=>$id]);
+
+    $id= $user->getProfile()->getId();
+        return $this->redirectToRoute('profile',['id'=>$id]);
+        
     }
 
     /**
@@ -224,7 +269,7 @@ class MyHomeController extends Controller
             $personne3[$i] = null;
         }
         if ($project->getEmailPersonne4() != null) {
-            $personne3[$i] = $em->getRepository('App:User')->findOneBy(['email' => $project->getEmailPersonne4()])->getProfile();
+            $personne4[$i] = $em->getRepository('App:User')->findOneBy(['email' => $project->getEmailPersonne4()])->getProfile();
         } else {
             $personne4[$i] = null;
         }
@@ -299,7 +344,7 @@ class MyHomeController extends Controller
             $personne3= null;
         }
         if ($project->getEmailPersonne4() != null) {
-            $personne3 = $em->getRepository('App:User')->findOneBy(['email' => $project->getEmailPersonne4()])->getProfile();
+            $personne4 = $em->getRepository('App:User')->findOneBy(['email' => $project->getEmailPersonne4()])->getProfile();
         } else {
             $personne4= null;
         }
