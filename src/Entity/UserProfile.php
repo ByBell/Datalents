@@ -20,7 +20,7 @@ class UserProfile
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="profile")
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="profile", cascade={"remove"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
