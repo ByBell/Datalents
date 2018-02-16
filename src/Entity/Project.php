@@ -34,6 +34,29 @@ class Project
      */
     private $equipes;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $photo;
+
+    /**
+     * @return mixed
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * @param mixed $photo
+     */
+    public function setPhoto($photo)
+    {
+        if(!empty($photo)){
+            $this->photo = $photo;
+        }
+    }
+
 
     /**
      * @return mixed
@@ -204,6 +227,48 @@ class Project
      * @ORM\Column(type="string", nullable=true)
      */
     private $emailpersonne4;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $creatorid;
+
+    /**
+     * @return mixed
+     */
+    public function getisFisnish()
+    {
+        return $this->is_fisnish;
+    }
+
+    /**
+     * @param mixed $is_fisnish
+     */
+    public function setIsFisnish($is_fisnish)
+    {
+        $this->is_fisnish = $is_fisnish;
+    }
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_fisnish;
+
+    /**
+     * @return mixed
+     */
+    public function getCreatorId()
+    {
+        return $this->creatorid;
+    }
+
+    /**
+     * @param mixed $creatorid
+     */
+    public function setCreatorId($creatorid)
+    {
+        $this->creatorid = $creatorid;
+    }
 
     /**
      * @return mixed

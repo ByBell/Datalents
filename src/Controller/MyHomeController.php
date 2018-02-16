@@ -153,7 +153,8 @@ class MyHomeController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $profile = $user->getProfile();
             $profile->addProject($project);
-
+            $project->setIsFisnish(false);
+            $project->setCreatorId($user->getEmail());
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
             $em->flush();
@@ -248,7 +249,7 @@ class MyHomeController extends Controller
 
         $em->persist($project);
         $em->flush();
-        return $this->redirectToRoute('project', ['id' => $id]);
+        return $this->redirectToRoute('view-project', ['id' => $id]);
     }
 
     /**
@@ -258,8 +259,13 @@ class MyHomeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $projects = $em->getRepository('App:Project')->findAll();
+        $i=1;
+        foreach ($projects as $project){
+            $profile[$i] = $em->getRepository('App:user')->findOneBy(['email' => $project->getCreatorId()])->getProfile();
+            $i=$i+1;
+        }
 
-        return $this->render('myhome/project.html.twig', ['projects' => $projects]);
+        return $this->render('myhome/project.html.twig', ['projects' => $projects, 'profile' => $profile]);
     }
 
     /**
@@ -268,7 +274,46 @@ class MyHomeController extends Controller
     public function viewprojectAction($id, Request $request, SessionInterface $session, UserInterface $user)
     {
         $em = $this->getDoctrine()->getManager();
+        $project = $em->getRepository('App:Project')->find($id);
+        $i=1;
+        $profile = $em->getRepository('App:user')->findOneBy(['email' => $project->getCreatorId()])->getProfile();
+        if ($project->getEmailPersonne1() != null) {
+            $personne1 = $em->getRepository('App:User')->findOneBy(['email' => $project->getEmailPersonne1()])->getProfile();
+        } else {
+            $personne1= null;
+        }
+        if ($project->getEmailPersonne2() != null) {
+            $personne2 = $em->getRepository('App:User')->findOneBy(['email' => $project->getEmailPersonne2()])->getProfile();
+        } else {
+            $personne2 = null;
+        }
+        if ($project->getEmailPersonne3() != null) {
+            $personne3 = $em->getRepository('App:User')->findOneBy(['email' => $project->getEmailPersonne3()])->getProfile();
+        } else {
+            $personne3= null;
+        }
+        if ($project->getEmailPersonne4() != null) {
+            $personne3 = $em->getRepository('App:User')->findOneBy(['email' => $project->getEmailPersonne4()])->getProfile();
+        } else {
+            $personne4= null;
+        }
+
+
+        return $this->render('myhome/projectid.html.twig', ['project' => $project,'personne1'=>$personne1,'personne2'=>$personne2,'personne3'=>$personne3,'personne4'=>$personne4,'profile'=>$profile]);
+    }
+    /**
+     * @Route("/home/project/{id}/photo", name="add-photo-project")
+     */
+    public function addPhotoProject($id, Request $request, SessionInterface $session, UserInterface $user)
+    {
+        $em = $this->getDoctrine()->getManager();
         $projects = $em->getRepository('App:Project')->find($id);
+        $i=1;
+        foreach ($projects as $project){
+            $profiles[$i]= $em->getRepository('App:User')->findOneBy(['email' => $project->getCreatorid()])->getProfile();
+            $i=$i+1;
+        }
+
 
         return $this->render('myhome/projectid.html.twig', ['projects' => $projects]);
     }
