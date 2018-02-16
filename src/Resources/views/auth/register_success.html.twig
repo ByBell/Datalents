@@ -1,9 +1,25 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="/css/loginform.css">
+{% endblock %}
+
 {% block body %}
-    <h1>Votre inscription est bien enregistrée ! Un e-mail automatique vous a été envoyé.</h1>
-    <hr>
-    <a class="btn btn-primary" href="{{ path('login') }}">Connexion</a>
 
-
+<div class="page">
+        <div class="container">
+          <div class="left">
+            <div class="login l-small">Inscription validée</div>
+            <div class="eula">
+                <a href="{{ url('homepage') }}">Retourner à l'accueil</a>
+            </div>
+          </div>
+          <div class="right">
+            <div class="reset-logo-dt">
+                Utilisez le lien dans le mail envoyé à votre adresse afin d'activer votre compte.
+            </div>
+          </div>
+        </div>
+      </div>
+      
 {% endblock %}
