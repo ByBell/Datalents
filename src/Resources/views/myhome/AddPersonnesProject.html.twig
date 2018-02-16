@@ -1,0 +1,33 @@
+{% extends 'baseHome.html.twig' %}
+
+{% block title %}Modifier le profil{% endblock %}
+{% block activepofile %} active {% endblock %}
+
+{% block body %}
+
+  <div class="panel-header panel-header-lg" style="background-image:url('{{ not project.photo ? '/img/profil_hero_bg.png' : project.photo }}')">
+    <div class="container-fluid">
+      <div class="row">
+
+      </div>
+    </div>
+  </div>
+    {{ form_start(form) }}
+  <div class="card col-md-10 " style="display:flex; justify-content:center">
+
+
+    <div class="col-md-12" style="display:flex; justify-content:center">
+
+      <div class="col-md-2">
+          {{ form_row(form.personne, {'attr': {'class': 'form-control'}}) }}
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Modifier</button>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+    {{ form_end(form) }}
+{% endblock %}

@@ -3,6 +3,8 @@
 parameters:
     locale: 'en'
     public_dir: '%kernel.root_dir%/../public'
+    brochures_directory: '%kernel.project_dir%/public/uploads/project'
+
 
 services:
     # default configuration for services in *this* file
@@ -47,3 +49,5 @@ services:
     App\Twig\UnserializeExtension:
         tags:
             - { name: twig.extension}
+
+

@@ -43,7 +43,7 @@ class PhotoUploadListener
 
         // only upload new files
         if ($file instanceof UploadedFile) {
-            $fileName = $this->uploader->to('/uploads/photos')->upload($file);
+            $fileName = $this->uploader->to('brochures_directory')->upload($file);
             $entity->setPhoto($this->uploader->getPath().'/'.$fileName);
         }
     }
