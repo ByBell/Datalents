@@ -78,6 +78,9 @@
 </button> -->
 
     <div class="row">
+        {% if profile.firstname == null or profile.personality == null or profile.photo == null %}
+
+
             <div class="col-md-12">
                     <div class="card ">
                         <div class="card-header">
@@ -90,148 +93,202 @@
                         
                         </div>
                         <div class="card-body row">
-                        <div class="col-md-4" style="display:flex; justify-content:center">
-                                <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('edit_profile') }}">Remplir mon profil</a>
-                        </div>
-                        <div class="col-md-4" style="display:flex; justify-content:center">
-                                <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('test') }}">Passez le test de personalité</a>
-                        </div>
-                        <div class="col-md-4" style="display:flex; justify-content:center">
-                                <a class="btn btn-primary btn-round" style="margin:1em auto" href="">Ajoutez une image</a>
-                        </div>
+                            {% if profile.firstname ==null %}
+                                <div class="col-md-4" style="display:flex; justify-content:center">
+                                    <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('edit_profile') }}">Remplir mon profil</a>
+                                </div>
+                            {% endif %}
+                            {% if profile.personality ==null %}
+                                <div class="col-md-4" style="display:flex; justify-content:center">
+                                    <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('test') }}">Passez le test de personalité</a>
+                                </div>
+                            {% endif %}
+                            {% if profile.photo ==null %}
+                                <div class="col-md-4" style="display:flex; justify-content:center">
+                                    <a class="btn btn-primary btn-round" style="margin:1em auto" href="">Ajoutez une image</a>
+                                </div>
+                            {% endif %}
+
+
                     </div>
                     </div>
             </div>
-        
+        {% endif %}
+        {% if profile.firstname !=null %}
             <div class="col-md-4">
-                    <div class="card ">
-                        <div class="card-header">
-                            <h5 class="card-category">Mon profil</h5>
-                            <h2 class="card-title">Timothée Poincheval</h2>
-                            <div class="photo">
-                                <img src="/james.jpg" class="rounded-circle img-raised">
-                            </div>
-                            
+                <div class="card ">
+                    <div class="card-header">
+                        <h5 class="card-category">Mon profil</h5>
+                        <h2 class="card-title">{{ profile.firstname }} {{ profile.lastname }}</h2>
+                        <div class="photo">
+                            <img src="{{ profile.photo }}" class="rounded-circle img-raised">
                         </div>
-                        <div class="card-body col-md-12" style="display:flex; justify-content:center">
-                                <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('profile', {'id': app.user.profile.id}) }}">Voir mon profil</a>
-                        </div>
+
                     </div>
+                    <div class="card-body col-md-12" style="display:flex; justify-content:center">
+                        <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('profile', {'id': app.user.profile.id}) }}">Voir mon profil</a>
+                    </div>
+                </div>
             </div>
+        {% endif %}
+
 
             
-
+    {% if project != null %}
             
         <div class="col-md-4">
             <div class="card card-chart">
                 <div class="card-header">
                     <h5 class="card-category">Projets en cours</h5>
-                    <h2 class="card-title">Datalents</h2>
-                    <div class="dropdown">
-                        <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
-                            <i class="now-ui-icons loader_gear"></i>
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="">Action</a>
-                            <a class="dropdown-item" href="">Another action</a>
-                            <a class="dropdown-item" href="">Something else here</a>
-                            <a class="dropdown-item text-danger" href="">Remove Data</a>
-                        </div>
-                    </div>
+                    <h2 class="card-title">{{ project.name }}</h2>
                 </div>
                 <div class="card-body">
                     <div>
 
-                        <i class="fas fa-briefcase col-md-12 " style="font-size:90px; margin:0 auto;text-align: center;"></i>
+                        <p>{{ project.description }}</p>
 
 
                     </div>
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
+                            {% if personne1 != null %}
+                                <tr>
+                                <td>
+                                    <div class="photo">
+                                        <img src="{{ personne1.photo }}" class="rounded-circle img-raised" style="width:40px;">
+                                    </div>
+                                </td>
+                                <td>{{ personne1.firstname }}</td>
+                                <td class="text-right">
+                                    {{ project.personne1 }}
+                                </td>
+                                <td class="text-right">
+                                    <i class="fas fa-check"></i>
+                                </td>
+                                </tr>
+                                {% else %}
+                                    <tr>
+                                        <td>
+                                            <div class="photo">
+                                                <img src="/img/missing.png" class="rounded-circle img-raised" style="width:40px;">
+                                            </div>
+                                        </td>
+                                        <td>Encore Disponible</td>
+                                        <td class="text-right">
+                                            {{ project.personne1 }}
+                                        </td>
+                                        <td class="text-right">
+                                            <i class="fas fa-stopwatch"></i>
+                                        </td>
+                                    </tr>
+                            {% endif %}
+                            {% if personne2 != null %}
                                 <tr>
                                     <td>
                                         <div class="photo">
-                                            <img src="/james.jpg" class="rounded-circle img-raised" style="width:40px;">
+                                            <img src="{{ personne2.photo }}" class="rounded-circle img-raised" style="width:40px;">
                                         </div>
                                     </td>
-                                    <td>Steven</td>
+                                    <td>{{ personne2.firstname }}</td>
                                     <td class="text-right">
-                                        Design
+                                        {{ project.personne2 }}
                                     </td>
                                     <td class="text-right">
                                         <i class="fas fa-check"></i>
                                     </td>
                                 </tr>
+                            {% else %}
                                 <tr>
                                     <td>
                                         <div class="photo">
-                                            <img src="/james.jpg" class="rounded-circle img-raised" style="width:40px;">
+                                            <img src="/img/missing.png" class="rounded-circle img-raised" style="width:40px;">
                                         </div>
                                     </td>
-                                    <td>Brendan</td>
+                                    <td>Encore Disponible</td>
                                     <td class="text-right">
-                                        Programmation
-                                    </td>
-                                    <td class="text-right">
-                                        <i class="fas fa-check"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="photo">
-                                            <img src="/james.jpg" class="rounded-circle img-raised" style="width:40px;">
-                                        </div>
-                                    </td>
-                                    <td>Bryan</td>
-                                    <td class="text-right">
-                                        Chef de projet/Design
-                                    </td>
-                                    <td class="text-right">
-                                        <i class="fas fa-check"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="photo">
-                                            <img src="/james.jpg" class="rounded-circle img-raised" style="width:40px;">
-                                        </div>
-                                    </td>
-                                    <td>Gaetan</td>
-                                    <td class="text-right">
-                                        Programmation
+                                        {{ project.personne2 }}
                                     </td>
                                     <td class="text-right">
                                         <i class="fas fa-stopwatch"></i>
                                     </td>
                                 </tr>
+                            {% endif %}
+                            {% if personne3 != null %}
                                 <tr>
                                     <td>
                                         <div class="photo">
-                                            <img src="/james.jpg" class="rounded-circle img-raised" style="width:40px;">
+                                            <img src="{{ personne3.photo }}" class="rounded-circle img-raised" style="width:40px;">
                                         </div>
                                     </td>
-                                    <td>Timothée</td>
+                                    <td>{{ personne3.firstname }}</td>
                                     <td class="text-right">
-                                        Programmation
+                                        {{ project.personne3 }}
+                                    </td>
+                                    <td class="text-right">
+                                        <i class="fas fa-check"></i>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td>
+                                        <div class="photo">
+                                            <img src="/img/missing.png" class="rounded-circle img-raised" style="width:40px;">
+                                        </div>
+                                    </td>
+                                    <td>Encore Disponible</td>
+                                    <td class="text-right">
+                                        {{ project.personne3 }}
                                     </td>
                                     <td class="text-right">
                                         <i class="fas fa-stopwatch"></i>
                                     </td>
                                 </tr>
+                            {% endif %}
+                            {% if personne4 != null %}
+                                <tr>
+                                    <td>
+                                        <div class="photo">
+                                            <img src="{{ personne4.photo }}" class="rounded-circle img-raised" style="width:40px;">
+                                        </div>
+                                    </td>
+                                    <td>{{ personne4.firstname }}</td>
+                                    <td class="text-right">
+                                        {{ project.personne4 }}
+                                    </td>
+                                    <td class="text-right">
+                                        <i class="fas fa-check"></i>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td>
+                                        <div class="photo">
+                                            <img src="/img/missing.png" class="rounded-circle img-raised" style="width:40px;">
+                                        </div>
+                                    </td>
+                                    <td>Encore Disponible</td>
+                                    <td class="text-right">
+                                        {{ project.personne4 }}
+                                    </td>
+                                    <td class="text-right">
+                                        <i class="fas fa-stopwatch"></i>
+                                    </td>
+                                </tr>
+                            {% endif %}
+
+
 
                             </tbody>
                         </table>
                     </div>
 
                 </div>
-                <div class="card-footer">
-                    <div class="stats">
-                        <i class="now-ui-icons arrows-1_refresh-69"></i>Projet pour le 23/05/2018
-                    </div>
-                </div>
+
             </div>
         </div>
+
+        {% endif %}
         <div class="col-md-4">
             <div class="card ">
                 <div class="card-header">
@@ -264,68 +321,80 @@
 
     </div>
 
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-category">Profils recommandés</h4>
-                    <h2 class="card-title text-center">Timothée Poincheval</h2>
-                </div>
-                <div class="card-body">
-                        
-                        <div class="photo col-md-12" style="display:flex; justify-content:center">
-                                <img src="/james.jpg" class="rounded-circle img-raised" style="width:130px; height:130px;">
+    <<div class="content content-no-card">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+            {% if profile1 != null %}
+
+
+
+                        <div class="profile-result col-md-4">
+                            <img src="{{ not profile1.photo ? '/img/missing.png' : profile1.photo }}" alt="{{ profile1.firstname~" "~profile1.lastname }}" class="profile-photo img-raised">
+                            <div class="profile-card card card-raised">
+                                <div class="card-body">
+                                    <div class="profile-header">
+                                        <h3 class="profile-fullname">{{ profile1.firstname~" "~profile1.lastname }}</h3>
+                                        <span class="profile-title">{{ profile1.title }}</span>
+                                    </div>
+
+                                    <p class="profile-description">
+                                        {{ profile1.resume }}
+                                    </p>
+                                    <a href="{{ path('profile', {'id': profile1.id}) }}" class="btn btn-primary">Voir le profil</a>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="card-title">Compétences</h4>
+
+            {% endif %}
+            {% if profile2 != null %}
+
+
+
+                        <div class="profile-result col-md-4">
+                            <img src="{{ not profile2.photo ? '/img/missing.png' : profile2.photo }}" alt="{{ profile2.firstname~" "~profile2.lastname }}" class="profile-photo img-raised">
+                            <div class="profile-card card card-raised">
+                                <div class="card-body">
+                                    <div class="profile-header">
+                                        <h3 class="profile-fullname">{{ profile2.firstname~" "~profile2.lastname }}</h3>
+                                        <span class="profile-title">{{ profile2.title }}</span>
+                                    </div>
+
+                                    <p class="profile-description">
+                                        {{ profile2.resume }}
+                                    </p>
+                                    <a href="{{ path('profile', {'id': profile2.id}) }}" class="btn btn-primary">Voir le profil</a>
+                                </div>
+                            </div>
                         </div>
-                    
+
+
+            {% endif %}
+            {% if profile3 != null %}
+
+
+                        <div class="profile-result col-md-4">
+                            <img src="{{ not profile3.photo ? '/img/missing.png' : profile3.photo }}" alt="{{ profile3.firstname~" "~profile3.lastname }}" class="profile-photo img-raised">
+                            <div class="profile-card card card-raised">
+                                <div class="card-body">
+                                    <div class="profile-header">
+                                        <h3 class="profile-fullname">{{ profile3.firstname~" "~profile3.lastname }}</h3>
+                                        <span class="profile-title">{{ profile3.title }}</span>
+                                    </div>
+                                    <p class="profile-description">
+                                        {{ profile3.resume }}
+                                    </p>
+                                    <a href="{{ path('profile', {'id': profile3.id}) }}" class="btn btn-primary">Voir le profil</a>
+                                </div>
+                            </div>
+                        </div>
+
+            {% endif %}
+
                 </div>
-                <div class="card-footer"></div>
             </div>
 
-        </div>
-        <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-category">Profils recommandés</h4>
-                        <h2 class="card-title text-center">Timothée Poincheval</h2>
-                    </div>
-                    <div class="card-body">
-                            
-                            <div class="photo col-md-12" style="display:flex; justify-content:center">
-                                    <img src="/james.jpg" class="rounded-circle img-raised" style="width:130px; height:130px;">
-                            </div>
-                            <div>
-                                <h4 class="card-title">Compétences</h4>
-                            </div>
-                        
-                    </div>
-                    <div class="card-footer"></div>
-                </div>
 
-            </div>
-
-            <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-category"> Profils recommandés</h4>
-                            <h2 class="card-title text-center">Timothée Poincheval</h2>
-                        </div>
-                        <div class="card-body">
-                                
-                                <div class="photo col-md-12" style="display:flex; justify-content:center">
-                                        <img src="/james.jpg" class="rounded-circle img-raised" style="width:130px; height:130px;">
-                                </div>
-                                <div>
-                                    <h4 >Compétences</h4>
-                                </div>
-                            
-                        </div>
-                        <div class="card-footer"></div>
-                    </div>
-
-                </div>
     </div>
 
 </div>
