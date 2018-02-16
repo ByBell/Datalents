@@ -10,6 +10,7 @@ namespace App\Controller;
 
 use App\Form\EditUserType;
 use App\Form\ResultAddProjectType;
+use App\Form\AddPhotoProjectType;
 use App\Entity\PersonalityTest;
 use App\Form\AddProjectType;
 use App\Form\Add2ProjectType;
@@ -153,7 +154,8 @@ class MyHomeController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $profile = $user->getProfile();
             $profile->addProject($project);
-            $project->setIsFisnish(false);
+            $project->setFinish(false);
+            $project->setPhoto('/img/profil_hero_bg.png');
             $project->setCreatorId($user->getEmail());
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
@@ -235,6 +237,7 @@ class MyHomeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+
         $project = $em->getRepository('App:Project')->findOneBy(['id' => $id]);
 
         if ($personne == 'personne1') {
@@ -246,7 +249,7 @@ class MyHomeController extends Controller
         } elseif ($personne == 'personne4') {
             $project->setEmailPersonne4($user->getEmail());
         }
-
+        $user->getProfile()->addProject($project);
         $em->persist($project);
         $em->flush();
         return $this->redirectToRoute('view-project', ['id' => $id]);
@@ -297,9 +300,14 @@ class MyHomeController extends Controller
         } else {
             $personne4= null;
         }
+        if ($project->getCreatorId() == $user->getEmail()){
+            $creator=true;
+        } else{
+            $creator=false;
+        }
 
 
-        return $this->render('myhome/projectid.html.twig', ['project' => $project,'personne1'=>$personne1,'personne2'=>$personne2,'personne3'=>$personne3,'personne4'=>$personne4,'profile'=>$profile]);
+        return $this->render('myhome/projectid.html.twig', ['project' => $project,'personne1'=>$personne1,'personne2'=>$personne2,'personne3'=>$personne3,'personne4'=>$personne4,'profile'=>$profile, 'creator'=>$creator]);
     }
     /**
      * @Route("/home/project/{id}/photo", name="add-photo-project")
@@ -307,21 +315,70 @@ class MyHomeController extends Controller
     public function addPhotoProject($id, Request $request, SessionInterface $session, UserInterface $user)
     {
         $em = $this->getDoctrine()->getManager();
-        $projects = $em->getRepository('App:Project')->find($id);
-        $i=1;
-        foreach ($projects as $project){
-            $profiles[$i]= $em->getRepository('App:User')->findOneBy(['email' => $project->getCreatorid()])->getProfile();
-            $i=$i+1;
+        $project = $em->getRepository('App:Project')->find($id);
+
+        $form = $this->createForm(AddPhotoProjectType::class, $project);
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $project ->getPhoto();
+            $project
+            $em->persist($project);
+            $em->flush();
+            $session->set('project_id', $project->getId());
+
+            return $this->redirectToRoute('view-project', ['id'=> $project->getId()]);
         }
 
 
-        return $this->render('myhome/projectid.html.twig', ['projects' => $projects]);
+        return $this->render('myhome/AddPhotoProject.html.twig', ['form' => $form->createView(),'project'=>$project]);
+
+
+
+    }
+    /**
+     * @Route("/home/project/delete/{id}", name="delete-project")
+     */
+    public function deleteProject($id, Request $request, SessionInterface $session, UserInterface $user)
+    {
+
+
+
+
+        return $this->redirectToRoute('view-project',['id'=>$id]);
+    }
+    /**
+     * @Route("/home/project/{id}/finish", name="finish-project")
+     */
+    public function finishProject($id, Request $request, SessionInterface $session, UserInterface $user)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $projects = $em->getRepository('App:Project')->find($id);
+        $projects->setFinish(true);
+        $em->persist($projects);
+        $em->flush();
+
+
+        return $this->redirectToRoute('view-project',['id'=>$id]);;
     }
 
     /**
      * @Route("/home/search", name="search")
      */
     public function searchAction(Request $request){
+        $query = $request->get('q');
+
+        $em = $this->getDoctrine()->getManager();
+        $results = $em->getRepository('App:UserProfile')->search($query);
+
+        return $this->render('myhome/search.html.twig', ['results' => $results, 'query' => $query]);
+    }
+
+    /**
+     * @Route("/home/project/add/{id}/", name="add-talent-project")
+     */
+    public function addpersonneAction($id, Request $request){
         $query = $request->get('q');
 
         $em = $this->getDoctrine()->getManager();
