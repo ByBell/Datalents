@@ -21,7 +21,7 @@
 
     <div class="content">
 
-
+        {% if creator==true %}
             <div class="row" style="margin: 6em 0;">
                 <div class="col-md-8"  >
                     <div class="card "style="height:275px">
@@ -31,11 +31,6 @@
                                 {% else %}
                                     <h5 class="card-category col-md-11">Projet en cours</h5>
                             {% endif %}
-
-
-                            {% if creator==true %}
-
-
                             <div class="dropdown col-md-1">
                                 <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
                                     <i class="now-ui-icons loader_gear"></i>
@@ -45,7 +40,7 @@
                                     <a class="dropdown-item" href="{{ path('add-photo-project',{'id': project.id}) }}">Charger une image de couverture</a>
                                 </div>
                             </div>
-                            {% endif %}
+
 
                         </div>
                         <div class="card-body row" style="padding: 0;">
@@ -56,7 +51,7 @@
                                 <h3 class="text-center">{{ project.description }}</h3>
                             </div>
                         </div>
-    {% if creator==true %}
+
                         <div class="card-footer">
                             {% if project.finish ==false %}
 
@@ -66,7 +61,7 @@
                             </div>
                             {% endif %}
                         </div>
-    {% endif %}
+
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -116,16 +111,9 @@
         <div class="col-md-12 text-center" style="padding: 1em 0">
             <a class="btn btn-primary btn-round " href="{{ path('profile',{'id': personne1.id}) }}">Voir le profile</a>
         </div>
-    {% elseif project.getCreatorId == true %}
+    {% else %}
         <div class="card-body col-md-12" style="display:flex; justify-content:center">
             <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('add-talent-project', {'id' : project.id,'personne' : 'personne1'}) }}">Inviter un talent</a>
-        </div>
-
-
-    {% else %}
-
-        <div class="card-body col-md-12" style="display:flex; justify-content:center">
-            <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('edit-project', {'id' : project.id,'personne' : 'personne1'}) }}">Choisir ce Poste</a>
         </div>
     {% endif %}
                     </div>
@@ -158,10 +146,190 @@
                                 <div class="col-md-12 text-center" style="padding: 1em 0">
                                     <a class="btn btn-primary btn-round " href="{{ path('profile',{'id': personne2.id}) }}">Voir le profile</a>
                                 </div>
-                                {% elseif project.getCreatorId == true %}
+                                {% else %}
                                     <div class="card-body col-md-12" style="display:flex; justify-content:center">
                                         <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('add-talent-project', {'id' : project.id,'personne' : 'personne2'}) }}">Inviter un talent</a>
                                     </div>
+
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+                {% if project.equipes >2 %}
+                    <div class="col-md-4">
+                        <div class="card ">
+                            <div class="card-header">
+                                <h5 class="card-category">Talent 3</h5>
+                                <h2 class="card-title">{{ project.personne3 }}</h2>
+
+                            </div>
+                            {% if personne3 != null %}
+                                <div class="col-md-12">
+                                    <h5>Ce poste est pris par: {{ personne3.lastname }} {{ personne3.firstname }}</h5>
+                                </div>
+                                <div class="col-md-12" style="display:flex; justify-content:center">
+                                    <div class="photo rounded-circle " style="width: 5em; height: 5em;margin:1em 0;">
+                                        <img src="{{ personne3.photo }}" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center" style="padding: 1em 0">
+                                    <a class="btn btn-primary btn-round " href="{{ path('profile',{'id': personne3.id}) }}">Voir le profile</a>
+                                </div>
+                            {% else %}
+                                <div class="card-body col-md-12" style="display:flex; justify-content:center">
+                                    <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('add-talent-project', {'id' : project.id,'personne' : 'personne3'}) }}">Inviter un talent</a>
+                                </div>
+
+
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+                {% if project.equipes >3 %}
+                    <div class="col-md-4">
+                        <div class="card ">
+                            <div class="card-header">
+                                <h5 class="card-category">Talent 4</h5>
+                                <h2 class="card-title">{{ project.personne4 }}</h2>
+
+                            </div>
+                            {% if personne4 != null %}
+                                <div class="col-md-12">
+                                    <h5>Ce poste est pris par: {{ personne4.lastname }} {{ personne4.firstname }}</h5>
+                                </div>
+                                <div class="col-md-12" style="display:flex; justify-content:center">
+                                    <div class="photo rounded-circle " style="width: 5em; height: 5em;margin:1em 0;">
+                                        <img src="{{ personne2.photo }}" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center" style="padding: 1em 0">
+                                    <a class="btn btn-primary btn-round " href="{{ path('profile',{'id': personne4.id}) }}">Voir le profile</a>
+                                </div>
+                            {% else %}
+                                <div class="card-body col-md-12" style="display:flex; justify-content:center">
+                                    <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('add-talent-project', {'id' : project.id,'personne' : 'personne4'}) }}">Inviter un talent</a>
+                                </div>
+
+
+                            {% endif %}
+
+                        </div>
+                    </div>
+
+                {% endif %}
+
+            </div>
+        {% else %}
+            <div class="row" style="margin: 6em 0;">
+                <div class="col-md-8"  >
+                    <div class="card "style="height:275px">
+                        <div class="card-header row">
+                            {% if project.finish ==true %}
+                                <h5 class="card-category col-md-11">Projet Terminé</h5>
+                            {% else %}
+                                <h5 class="card-category col-md-11">Projet en cours</h5>
+                            {% endif %}
+
+
+                        </div>
+                        <div class="card-body row" style="padding: 0;">
+                            <div class="col-md-12" style="display:flex; justify-content:center" style="margin: 0;padding: 0;">
+                                <h3 class="text-center" style="height:20px">{{ project.name }}</h3>
+                            </div>
+                            <div class="col-md-12" style="display:flex; justify-content:center" style="margin: 0;padding: 0;">
+                                <h3 class="text-center">{{ project.description }}</h3>
+                            </div>
+                        </div>
+
+                        >
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card ">
+                        <div class="card-header">
+                            <h5 class=" card-category">Projet crée par</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="col-md-12">
+                                <div class="col-md-12 text-center" style="display:flex; justify-content:center">
+                                    <b class="col-md-12">{{ profile.firstname }} {{ profile.lastname }}</b>
+
+                                </div>
+
+                                <div class="col-md-12" style="display:flex; justify-content:center">
+                                    <div class="photo rounded-circle " style="width: 8em; height: 8em;margin:1em 0;">
+                                        <img src="{{ profile.photo }}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <a class="btn btn-primary btn-round " href="{{ path('profile',{'id': profile.id}) }}">Voir le profile</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="col-md-4">
+                    <div class="card ">
+                        <div class="card-header">
+                            <h5 class="card-category">Talent 1</h5>
+                            <h2 class="card-title">{{ project.personne1 }}</h2>
+
+                        </div>
+                        {% if personne1 != null %}
+                            <div class="col-md-12">
+                                <h5>Ce poste est pris par: {{ personne1.lastname }} {{ personne1.firstname }}</h5>
+                            </div>
+                            <div class="col-md-12" style="display:flex; justify-content:center">
+                                <div class="photo rounded-circle " style="width: 5em; height: 5em;margin:1em 0;">
+                                    <img src="{{ personne1.photo }}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-center" style="padding: 1em 0">
+                                <a class="btn btn-primary btn-round " href="{{ path('profile',{'id': personne1.id}) }}">Voir le profile</a>
+                            </div>
+
+
+                        {% else %}
+
+                            <div class="card-body col-md-12" style="display:flex; justify-content:center">
+                                <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('edit-project', {'id' : project.id,'personne' : 'personne1'}) }}">Choisir ce Poste</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+
+
+                {% if project.equipes >1 %}
+
+
+
+
+                    <div class="col-md-4">
+                        <div class="card ">
+                            <div class="card-header">
+                                <h5 class="card-category">Talent 2</h5>
+                                <h2 class="card-title">{{ project.personne2 }}</h2>
+
+                            </div>
+
+                            {% if personne2 != null %}
+                                <div class="col-md-12">
+                                    <h5>Ce poste est pris par: {{ personne2.lastname }} {{ personne2.firstname }}</h5>
+                                </div>
+                                <div class="col-md-12" style="display:flex; justify-content:center">
+                                    <div class="photo rounded-circle " style="width: 5em; height: 5em;margin:1em 0;">
+                                        <img src="{{ personne2.photo }}" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center" style="padding: 1em 0">
+                                    <a class="btn btn-primary btn-round " href="{{ path('profile',{'id': personne2.id}) }}">Voir le profile</a>
+                                </div>
 
 
                             {% else %}
@@ -192,10 +360,6 @@
                                 </div>
                                 <div class="col-md-12 text-center" style="padding: 1em 0">
                                     <a class="btn btn-primary btn-round " href="{{ path('profile',{'id': personne3.id}) }}">Voir le profile</a>
-                                </div>
-                            {% elseif project.getCreatorId == true %}
-                                <div class="card-body col-md-12" style="display:flex; justify-content:center">
-                                    <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('add-talent-project', {'id' : project.id,'personne' : 'personne3'}) }}">Inviter un talent</a>
                                 </div>
 
 
@@ -228,10 +392,6 @@
                                 <div class="col-md-12 text-center" style="padding: 1em 0">
                                     <a class="btn btn-primary btn-round " href="{{ path('profile',{'id': personne4.id}) }}">Voir le profile</a>
                                 </div>
-                            {% elseif project.getCreatorId == true %}
-                                <div class="card-body col-md-12" style="display:flex; justify-content:center">
-                                    <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('add-talent-project', {'id' : project.id,'personne' : 'personne4'}) }}">Inviter un talent</a>
-                                </div>
 
 
                             {% else %}
@@ -247,6 +407,7 @@
                 {% endif %}
 
             </div>
+        {% endif %}
 
     </div>
 {% endblock %}

@@ -348,7 +348,7 @@ class MyHomeController extends Controller
         } else {
             $personne4= null;
         }
-        if ($project->getCreatorId() == $user->getEmail()){
+        if ($project->getCreatorId() == $user->getUsername()){
             $creator=true;
         } else{
             $creator=false;
