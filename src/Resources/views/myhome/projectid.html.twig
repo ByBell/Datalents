@@ -104,30 +104,30 @@
                             <h2 class="card-title">{{ project.personne1 }}</h2>
 
                         </div>
-    {% if project.getCreatorId == true and project.personne1!= null %}
+    {% if personne1 != null %}
+        <div class="col-md-12">
+            <h5>Ce poste est pris par: {{ personne1.lastname }} {{ personne1.firstname }}</h5>
+        </div>
+        <div class="col-md-12" style="display:flex; justify-content:center">
+            <div class="photo rounded-circle " style="width: 5em; height: 5em;margin:1em 0;">
+                <img src="{{ personne1.photo }}" alt="">
+            </div>
+        </div>
+        <div class="col-md-12 text-center" style="padding: 1em 0">
+            <a class="btn btn-primary btn-round " href="{{ path('profile',{'id': personne1.id}) }}">Voir le profile</a>
+        </div>
+    {% elseif project.getCreatorId == true %}
         <div class="card-body col-md-12" style="display:flex; justify-content:center">
             <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('add-talent-project', {'id' : project.id,'personne' : 'personne1'}) }}">Inviter un talent</a>
         </div>
-                        {% elseif personne1!= null %}
-                            <div class="col-md-12">
-                                <h5>Ce poste est pris par: {{ personne1.lastname }} {{ personne1.firstname }}</h5>
-                            </div>
-                            <div class="col-md-12" style="display:flex; justify-content:center">
-                                <div class="photo rounded-circle " style="width: 5em; height: 5em;margin:1em 0;">
-                                    <img src="{{ personne1.photo }}" alt="">
-                                </div>
-                            </div>
-                            <div class="col-md-12 text-center" style="padding: 1em 0">
-                                <a class="btn btn-primary btn-round " href="{{ path('profile',{'id': personne1.id}) }}">Voir le profile</a>
-                            </div>
 
 
-                        {% else %}
+    {% else %}
 
-                            <div class="card-body col-md-12" style="display:flex; justify-content:center">
-                                <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('edit-project', {'id' : project.id,'personne' : 'personne1'}) }}">Choisir ce Poste</a>
-                            </div>
-                        {% endif %}
+        <div class="card-body col-md-12" style="display:flex; justify-content:center">
+            <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('edit-project', {'id' : project.id,'personne' : 'personne1'}) }}">Choisir ce Poste</a>
+        </div>
+    {% endif %}
                     </div>
                 </div>
 
@@ -181,11 +181,7 @@
                                 <h2 class="card-title">{{ project.personne3 }}</h2>
 
                             </div>
-                    {% if project.getCreatorId == true and project.personne3!= null %}
-                        <div class="card-body col-md-12" style="display:flex; justify-content:center">
-                            <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('add-talent-project', {'id' : project.id,'personne' : 'personne3'}) }}">Inviter un talent</a>
-                        </div>
-                            {% elseif personne3 != null %}
+                            {% if personne3 != null %}
                                 <div class="col-md-12">
                                     <h5>Ce poste est pris par: {{ personne3.lastname }} {{ personne3.firstname }}</h5>
                                 </div>
@@ -196,6 +192,10 @@
                                 </div>
                                 <div class="col-md-12 text-center" style="padding: 1em 0">
                                     <a class="btn btn-primary btn-round " href="{{ path('profile',{'id': personne3.id}) }}">Voir le profile</a>
+                                </div>
+                            {% elseif project.getCreatorId == true %}
+                                <div class="card-body col-md-12" style="display:flex; justify-content:center">
+                                    <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('add-talent-project', {'id' : project.id,'personne' : 'personne3'}) }}">Inviter un talent</a>
                                 </div>
 
 
@@ -216,24 +216,22 @@
                                 <h2 class="card-title">{{ project.personne4 }}</h2>
 
                             </div>
-                            {% if project.getCreatorId == true  and project.emailpersonne4!= null %}
-                                <div class="card-body col-md-12" style="display:flex; justify-content:center">
-                                    <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('add-talent-project', {'id' : project.id,'personne' : 'personne4'}) }}">Inviter un talent</a>
-                                </div>
-
-                            {% elseif personne4 != null %}
+                            {% if personne4 != null %}
                                 <div class="col-md-12">
                                     <h5>Ce poste est pris par: {{ personne4.lastname }} {{ personne4.firstname }}</h5>
                                 </div>
                                 <div class="col-md-12" style="display:flex; justify-content:center">
                                     <div class="photo rounded-circle " style="width: 5em; height: 5em;margin:1em 0;">
-                                        <img src="{{ personne4.photo }}" alt="">
+                                        <img src="{{ personne2.photo }}" alt="">
                                     </div>
                                 </div>
                                 <div class="col-md-12 text-center" style="padding: 1em 0">
                                     <a class="btn btn-primary btn-round " href="{{ path('profile',{'id': personne4.id}) }}">Voir le profile</a>
                                 </div>
-
+                            {% elseif project.getCreatorId == true %}
+                                <div class="card-body col-md-12" style="display:flex; justify-content:center">
+                                    <a class="btn btn-primary btn-round" style="margin:1em auto" href="{{ path('add-talent-project', {'id' : project.id,'personne' : 'personne4'}) }}">Inviter un talent</a>
+                                </div>
 
 
                             {% else %}

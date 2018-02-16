@@ -96,7 +96,7 @@ class MyHomeController extends Controller
 
     $id= $user->getProfile()->getId();
         return $this->redirectToRoute('profile',['id'=>$id]);
-        
+
     }
 
     /**
