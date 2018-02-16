@@ -1,14 +1,14 @@
 {% extends 'baseHome.html.twig' %}
 
-{% block title %}Résultats de la recherche > "{{ query }}" {% endblock %}
+{% block title %}Tous les profils {% endblock %}
 
 {% block activepofile %} active {% endblock %}
 
 {% block body %}
     <div class="panel-header" style="background-image:url(/img/profil_hero_bg.png)">
         <div class="header text-center">
-            <h2 class="title">"{{ query }}"</h2>
-            <p class="category">{{ results|length }} résultats pour {{ query }}</p>
+            <h2 class="title">Tous les profils</h2>
+            <p class="category">{{ results|length }} résultats</p>
         </div>
     </div>
 
@@ -26,7 +26,7 @@
                                     <span class="profile-title">{{ profile.title }}</span>
                                 </div>
                                 <ul class="skills-list">
-                                    {% for skill in profile.skills|unserialize %}
+                                    {% for skill in profile.skills %}
                                         <li class="tag">{{ skill }}</li>
                                     {% endfor %}
                                 </ul>

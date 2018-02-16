@@ -76,7 +76,7 @@
             <div class="sidebar-wrapper" style="background-color:#002D44">
                 <div class="user {% block activepofile %}  {% endblock %}">
                     <div class="photo">
-                        <img src="{{ app.user.profile.photo }}">
+                        <img src="{{ not app.user.profile.photo ? '/img/missing.png' : app.user.profile.photo }}">
                     </div>
                     <div class="info">
                         <a href="{{ path('edit_profile') }}">
