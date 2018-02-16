@@ -236,23 +236,23 @@ class Project
     /**
      * @return mixed
      */
-    public function getisFisnish()
+    public function getfinish()
     {
-        return $this->is_fisnish;
+        return $this->finish;
     }
 
     /**
-     * @param mixed $is_fisnish
+     * @param mixed $fisnish
      */
-    public function setIsFisnish($is_fisnish)
+    public function setFinish($finish)
     {
-        $this->is_fisnish = $is_fisnish;
+        $this->finish = $finish;
     }
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $is_fisnish;
+    private $finish;
 
     /**
      * @return mixed

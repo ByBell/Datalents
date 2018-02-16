@@ -16,6 +16,7 @@ a:hover {
 header {
     display: block;
     color: white;
+    filter: grayscale(.5);
     background: linear-gradient(to right, #007991, #78ffd6);
 }
 
@@ -44,13 +45,14 @@ header ul li:first-child {
     font-family: 'Roboto';
     font-weight: 900;
     font-size: 200%;
+    padding-left: 3rem;
 }
 header ul li:first-child img {
     width: 30px;
 }
 
 header hero {
-    height: 500px;
+    height: 300px;
     display: flex;
     flex-flow: column;
     align-content: center;
@@ -59,7 +61,7 @@ header hero {
     text-align: center;
 }
 header hero img {
-    width: 80%;
+    width: 55%;
 }
 
 header div.split-hero {

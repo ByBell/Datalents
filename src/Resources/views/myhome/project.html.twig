@@ -25,175 +25,141 @@
     <!-- <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple" data-toggle="dropdown">
 7 days
 </button> -->
-    {% for project in projects  %}
 
 
 
-    <div class="row" style="margin: 6em 0;">
 
 
-        <div class="col-md-6">
-            <div class="card ">
-                <div class="card-header">
-                    <h5 class="card-category">Projet en cours</h5>
-                </div>
-                <div class="card-body row">
-                    <div class="col-md-12">
-                        <div class="col-md-12 text-center" style="display:flex; justify-content:center; height: 50px;">
-                            <h3 class="col-md-12" style="margin: 0">{{ project.name }}</h3>
-                        </div>
-                        <div class="col-md-12 text-center" style="display:flex; justify-content:center;height:110px">
-                            <h4 class="col-md-12" style="margin: 0">{{ project.description }}</h4>
-                        </div>
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <a class="btn btn-primary btn-round " href="{{  path('view-project',{'id': project.id} )}}">Voir le projet</a>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="col-md-3">
-            <div class="card ">
-                <div class="card-header">
-                    <h5 class=" card-category">Projet crée par</h5>
-                </div>
-                <div class="card-body">
-                    <div class="col-md-12">
-                        <div class="col-md-12 text-center" style="display:flex; justify-content:center">
-                            <b class="col-md-12">{{ profile[loop.index].firstname }} {{ profile[loop.index].lastname }}</b>
+                    <div class="row">
+                        {% for project in projects %}
+                            <div class="profile-result col-md-6">
+                                <img src="{{ not project.photo ? '/img/profil_hero_bg.png' : project.photo }}" alt="{{ project.name  }}" class="photo img-raised">
+                                <div class="profile-card card card-raised">
+                                    <div class="card-body">
+                                        <div class="profile-header">
+                                            <h3 class="profile-fullname">{{ project.name  }}</h3>
+                                            <span class="profile-title">{{ project.description }}</span>
+                                        </div>
+                                        <div>
+                                            <h5 class="card-category">Talents recherchés</h5>
+                                            <div class="table-responsive col-md-12">
+                                                <table class="table">
+                                                    <tbody>
+                                                    {% if project.equipes > 0 %}
+                                                        {% if project.emailpersonne1 != null %}
+                                                            <tr>
+                                                                <td class="text-center" style="color: darkgray">
+                                                                    {{ project.personne1 }}
+                                                                </td>
 
-                        </div>
+                                                                <td class="text-right" style="color: darkgray">
+                                                                    <i class="fas fa-check"></i>
+                                                                </td>
+                                                            </tr>
+                                                        {% else %}
+                                                            <tr>
+                                                                <td class="text-center">
+                                                                    {{ project.personne1 }}
+                                                                </td>
 
-                        <div class="col-md-12" style="display:flex; justify-content:center">
-                            <div class="photo rounded-circle " style="width: 8em; height: 8em;margin:1em 0;">
-                                <img src="{{ profile[loop.index].photo }}" alt="">
+                                                                <td class="text-right">
+                                                                    <i class="fas fa-plus"></i>
+                                                                </td>
+                                                            </tr>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                    {% if project.equipes > 1 %}
+                                                        {% if project.emailpersonne2 != null %}
+                                                            <tr>
+                                                                <td class="text-center" style="color: darkgray">
+                                                                    {{ project.personne2 }}
+                                                                </td>
+
+                                                                <td class="text-right" style="color: darkgray">
+                                                                    <i class="fas fa-check"></i>
+                                                                </td>
+                                                            </tr>
+                                                        {% else %}
+                                                            <tr>
+                                                                <td class="text-center">
+                                                                    {{ project.personne2 }}
+                                                                </td>
+
+                                                                <td class="text-right">
+                                                                    <i class="fas fa-plus"></i>
+                                                                </td>
+                                                            </tr>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                    {% if project.equipes > 2 %}
+                                                        {% if project.emailpersonne3 != null %}
+                                                            <tr>
+                                                                <td class="text-center" style="color: darkgray">
+                                                                    {{ project.personne3 }}
+                                                                </td>
+
+                                                                <td class="text-right" style="color: darkgray">
+                                                                    <i class="fas fa-check"></i>
+                                                                </td>
+                                                            </tr>
+                                                        {% else %}
+                                                            <tr>
+                                                                <td class="text-center">
+                                                                    {{ project.personne3 }}
+                                                                </td>
+
+                                                                <td class="text-right">
+                                                                    <i class="fas fa-plus"></i>
+                                                                </td>
+                                                            </tr>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                    {% if project.equipes > 3 %}
+                                                        {% if project.emailpersonne4 != null %}
+                                                            <tr>
+                                                                <td class="text-center" style="color: darkgray">
+                                                                    {{ project.personne4 }}
+                                                                </td>
+
+                                                                <td class="text-right" style="color: darkgray">
+                                                                    <i class="fas fa-check"></i>
+                                                                </td>
+                                                            </tr>
+                                                        {% else %}
+                                                            <tr>
+                                                                <td class="text-center">
+                                                                    {{ project.personne4 }}
+                                                                </td>
+
+                                                                <td class="text-right">
+                                                                    <i class="fas fa-plus"></i>
+                                                                </td>
+                                                            </tr>
+                                                        {% endif %}
+                                                    {% endif %}
+
+                                                    </tbody>
+                                                </table>
+
+                                        </div>
+                                        <a href="{{ path('view-project',{'id':project.id })}}" class="btn btn-primary">Voir le project</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <a class="btn btn-primary btn-round " href="">Voir le profile</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+                            </div>
+                        {% else %}
+                            <h3>Aucun profil correspondant à votre recherche.</h3>
 
-        <div class="col-md-3">
-            <div class="card ">
-                <div class="card-header">
-                    <h5 class="card-category">Talents recherchés</h5>
-                </div>
-                <div class="card-body row">
-                    <div class="table-responsive col-md-12">
-                        <table class="table">
-                            <tbody>
-                            {% if project.equipes > 0 %}
-                                {% if project.emailpersonne1 != null %}
-                                    <tr>
-                                        <td class="text-center" style="color: darkgray">
-                                            {{ project.personne1 }}
-                                        </td>
-
-                                        <td class="text-right" style="color: darkgray">
-                                            <i class="fas fa-check"></i>
-                                        </td>
-                                    </tr>
-                                    {% else %}
-                                        <tr>
-                                            <td class="text-center">
-                                                {{ project.personne1 }}
-                                            </td>
-
-                                            <td class="text-right">
-                                                <i class="fas fa-plus"></i>
-                                            </td>
-                                        </tr>
-                                    {% endif %}    
-                                {% endif %}
-                                {% if project.equipes > 1 %}
-                                    {% if project.emailpersonne2 != null %}
-                                        <tr>
-                                            <td class="text-center" style="color: darkgray">
-                                                {{ project.personne2 }}
-                                            </td>
-
-                                            <td class="text-right" style="color: darkgray">
-                                                <i class="fas fa-check"></i>
-                                            </td>
-                                        </tr>
-                                    {% else %}
-                                        <tr>
-                                            <td class="text-center">
-                                                {{ project.personne2 }}
-                                            </td>
-
-                                            <td class="text-right">
-                                                <i class="fas fa-plus"></i>
-                                            </td>
-                                        </tr>
-                                    {% endif %}
-                                {% endif %}
-                                {% if project.equipes > 2 %}
-                                    {% if project.emailpersonne3 != null %}
-                                        <tr>
-                                            <td class="text-center" style="color: darkgray">
-                                                {{ project.personne3 }}
-                                            </td>
-
-                                            <td class="text-right" style="color: darkgray">
-                                                <i class="fas fa-check"></i>
-                                            </td>
-                                        </tr>
-                                    {% else %}
-                                        <tr>
-                                            <td class="text-center">
-                                                {{ project.personne3 }}
-                                            </td>
-
-                                            <td class="text-right">
-                                                <i class="fas fa-plus"></i>
-                                            </td>
-                                        </tr>
-                                    {% endif %}
-                                {% endif %}
-                                {% if project.equipes > 3 %}
-                                    {% if project.emailpersonne4 != null %}
-                                        <tr>
-                                            <td class="text-center" style="color: darkgray">
-                                                {{ project.personne4 }}
-                                            </td>
-
-                                            <td class="text-right" style="color: darkgray">
-                                                <i class="fas fa-check"></i>
-                                            </td>
-                                        </tr>
-                                    {% else %}
-                                        <tr>
-                                            <td class="text-center">
-                                                {{ project.personne4 }}
-                                            </td>
-
-                                            <td class="text-right">
-                                                <i class="fas fa-plus"></i>
-                                            </td>
-                                        </tr>
-                                    {% endif %}
-                                {% endif %}
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </div>
+                        {% endfor %}
 
 
 
 
 
 
-    {% endfor %}
+
+
 </div>
 
 {% endblock %}
