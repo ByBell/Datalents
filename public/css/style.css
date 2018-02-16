@@ -1,11 +1,15 @@
 .logomini{
     width: 20px;
+    margin-top: -5px;
 }
 
 .btn-primary{
-    background-color: #E00122;
+    background: linear-gradient(to right, #007991, #4aad8f);
     margin: 0 5em;
     align-self: center;
+}
+.btn-round {
+    border-radius: 10px;
 }
 
 .bouton-dashboard{

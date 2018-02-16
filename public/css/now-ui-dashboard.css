@@ -6806,8 +6806,10 @@ fieldset[disabled] .navbar .navbar-nav>a.btn:hover {
 .show>.btn-primary.dropdown-toggle,
 .show>.btn-primary.dropdown-toggle:focus,
 .show>.btn-primary.dropdown-toggle:hover {
-    background-color: #fa7a50;
-    color: #fff;
+    /* background-color: #fa7a50; */
+    background: white;
+    color: #2e9d8f;
+    /* color: #fff; */
     box-shadow: none
 }
 
@@ -11501,12 +11503,13 @@ img {
 .sidebar .nav li.active>a {
     background-color: #fff;
     box-shadow: 0 1px 15px 1px rgba(39, 39, 39, .1);
-    color: #f96332
+    /* color: #f96332; */
+    color: #2e9d8f;
 }
 
 .off-canvas-sidebar .nav li.active>a i,
 .sidebar .nav li.active>a i {
-    color: #f96332
+    color: #2e9d8f
 }
 
 .off-canvas-sidebar .nav li.active>a[data-toggle=collapse],
@@ -11595,7 +11598,7 @@ img {
 
 .off-canvas-sidebar .logo:after,
 .sidebar .logo:after {
-    content: "";
+    /* content: ""; On supprime la barre de séparation sous le logo */
     position: absolute;
     bottom: 0;
     right: 15px;
